@@ -9,6 +9,6 @@ We want to show how companies and industries influenced politicians and parties 
 - Nicola Cocquio
 
 ## Data Sources
-https://github.com/unitedstates/congress-legislators
-https://www.opensecrets.org/open-data/bulk-data
-https://www.fec.gov/data/browse-data/?tab=bulk-data
+- https://github.com/unitedstates/congress-legislators
+- https://www.opensecrets.org/open-data/bulk-data
+- https://www.fec.gov/data/browse-data/?tab=bulk-data
