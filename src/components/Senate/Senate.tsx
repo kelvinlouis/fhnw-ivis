@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './Senate.scss';
 
-export class Senate extends Component {
-  constructor(props) {
+interface Props {}
+
+export class Senate extends Component<Props> {
+  private graph: SVGElement | null;
+
+  constructor(props: Props) {
     super(props);
 
     // Reference to svg element
