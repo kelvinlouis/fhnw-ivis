@@ -11,6 +11,9 @@
 # production
 /build
 
+# privacy concern of data
+src/data
+
 # misc
 .idea
 .DS_Store

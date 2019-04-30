@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import './styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import appReducers from './reducers/index';
+import appReducers from './store/index';
 
 // Creates the Redux Store and applies the socket middleware,
 // to intercept actions and emit them to the backend
