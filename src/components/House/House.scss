@@ -1,9 +1,33 @@
+@import "../../styles/base/variables";
+
+$money-width: 200px;
+
 .house {
   position: relative;
   width: 100%;
   height: 0;
   padding-top: 50%;
   margin-bottom: 2rem;
+}
+
+.house__title {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  font-size: $h2-size;
+  color: $dirt;
+  transition: font-size;
+}
+
+.house__total {
+  position: absolute;
+  top: 80%;
+  left: calc(50% - #{$money-width * 0.5});
+  width: $money-width;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: darken($dirt, 20%);
 }
 
 .house__seating {

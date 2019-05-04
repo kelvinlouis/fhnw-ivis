@@ -40,14 +40,11 @@ export const getPartyColor = (candidate: CandidateModel, max: number): string =>
   }
 };
 
-export const getPartyBorderColor = (candidate: CandidateModel): string => {
-  if (candidate.party === Party.Democrat) {
-    return 'blue';
-  } else if (candidate.party === Party.Independent) {
-    return 'grey';
-  } else if (candidate.party === Party.Republican) {
-    return 'red'
-  } else {
-    return 'black';
-  }
+export const moneyFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+export const formatMoney = (value: number) => {
+  return moneyFormatter.format(value);
 };

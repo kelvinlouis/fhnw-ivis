@@ -1,0 +1,14 @@
+.seat {
+  &:focus {
+    outline: 0;
+    border: 0;
+  }
+}
+
+.seat--active {
+  cursor: pointer;
+}
+
+.seat__money {
+  padding-left: 0.5rem;
+}

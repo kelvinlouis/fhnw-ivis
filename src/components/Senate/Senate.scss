@@ -1,12 +1,36 @@
+@import "../../styles/base/variables";
+
+$money-width: 200px;
+
 .senate {
   width: 100%;
   height: 0;
   padding-top: 50%;
   position: relative;
-  transform: rotate(-180deg);
+}
+
+.senate__title {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  font-size: $h2-size;
+  color: $dirt;
+  transition: font-size;
+}
+
+.senate__total {
+  position: absolute;
+  bottom: 80%;
+  left: calc(50% - #{$money-width * 0.5});
+  width: $money-width;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: darken($dirt, 20%);
 }
 
 .senate__seating {
+  transform: rotate(-180deg);
   position: absolute;
   top: 0;
   left: 0;

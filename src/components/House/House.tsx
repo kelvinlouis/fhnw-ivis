@@ -3,6 +3,7 @@ import './House.scss';
 import { CandidateModel } from '../../models/candidate.model';
 import { coordinates } from './house-coordinates';
 import { Seat } from '../Seat/Seat';
+import { formatMoney } from '../../utils';
 
 interface Props {
   max: number;
@@ -23,9 +24,12 @@ export class House extends Component<Props> {
 
   render() {
     const { candidates, max } = this.props;
+    const total = candidates.reduce((agg, candidate) => agg + candidate.total, 0);
 
     return (
       <div className="house">
+        <div className="house__title">House</div>
+        <div className="house__total">{formatMoney(total)}</div>
         <svg className="house__seating" ref={svg => this.graph = svg} viewBox="0 0 360 185">
           {candidates.map((c, index) => (
             <Seat

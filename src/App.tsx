@@ -13,7 +13,6 @@ import { Cycle } from './models/cycle.enum';
 import CycleSelector from './components/CycleSelector/CycleSelector';
 import SectorFilter from './components/SectorFilter/SectorFilter';
 
-import 'normalize.css/normalize.css';
 import './App.scss';
 import cycles from './data/candidate_list.json';
 import candidateData from './data/candidate_data.json';

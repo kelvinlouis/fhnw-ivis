@@ -1,12 +1,23 @@
+@import "./styles/base/variables";
+
 .app {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
 }
 
 .app__chambers {
+  box-sizing: border-box;
   width: 60vw;
   max-height: 100vh;
+  padding: 3rem;
 }
 
 .app__filters {
+  box-sizing: border-box;
   width: 40vw;
+  height: 100vh;
+  padding: 3rem;
+  background: $dollar-light;
 }
