@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { House } from './components/House/House';
 import { Senate } from './components/Senate/Senate';
-import { IndustryFilter } from './components/IndustryFilter/IndustryFilter';
 import cycles from './data/candidate_list.json';
 import { CandidateModel } from './models/candidate.model';
 import { Candidate } from './models/candidate';
@@ -15,6 +14,7 @@ import CycleSelector from './components/CycleSelector/CycleSelector';
 import 'normalize.css/normalize.css';
 import './App.scss';
 import SectorFilter from './components/SectorFilter/SectorFilter';
+import IndustryFilter from './components/IndustryFilter/IndustryFilter';
 
 interface Props {
   cycle: Cycle;
