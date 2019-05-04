@@ -10,6 +10,8 @@ $dollar-light: rgba(228, 230, 195, 1);
 $dark: rgba(34, 39, 37, 1);
 
 // Layout Colors
+$primary: $dollar;
+$secondary: lighten($dirt, 30%);
 $font-color-base: $dark;
 
 // Fonts
@@ -21,3 +23,11 @@ $h2-size: 2.441em;
 $h3-size: 1.953em;
 $h4-size: 1.563em;
 $h5-size: 1.25em;
+
+// Bootstrap Theme Variables
+$body-color: $font-color-base;
+$body-bg: $white;
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+);

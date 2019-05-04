@@ -29,11 +29,16 @@ const SectorFilter: React.FC<Props> = ({ selectedSector, onChange }) => {
   const selectedOption: OptionType = options.find( o => o.value === selectedSector)!;
 
   return (
-    <Select
-      options={options}
-      value={selectedOption}
-      onChange={(option: ValueType<OptionType>)  => onChange((option as OptionType).value)}
-    />
+    <div>
+      <h3>Sector</h3>
+      <Select
+        options={options}
+        value={selectedOption}
+        className="react-select-container"
+        classNamePrefix="react-select"
+        onChange={(option: ValueType<OptionType>)  => onChange((option as OptionType).value)}
+      />
+    </div>
   );
 };
 

@@ -8,16 +8,18 @@
 }
 
 .app__chambers {
-  box-sizing: border-box;
   width: 60vw;
   max-height: 100vh;
   padding: 3rem;
 }
 
 .app__filters {
-  box-sizing: border-box;
   width: 40vw;
   height: 100vh;
   padding: 3rem;
-  background: $dollar-light;
+  background: lighten($dollar-light, 10%);
+
+  h1, h2, h3, h4, h5 {
+    color: darken($dirt, 20%);
+  }
 }

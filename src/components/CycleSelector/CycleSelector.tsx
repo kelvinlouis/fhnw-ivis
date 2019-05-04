@@ -11,10 +11,29 @@ interface Props {
 
 const CycleSelector: React.FC<Props> = ({ cycle, onCycleClick }) => (
   <div>
-    <span>Active: {cycle}</span>
-    <button onClick={() => onCycleClick(Cycle.Year2014)}>2014</button>
-    <button onClick={() => onCycleClick(Cycle.Year2016)}>2016</button>
-    <button onClick={() => onCycleClick(Cycle.Year2018)}>2018</button>
+    <h3>Cycle</h3>
+    <div className="btn-group" role="group" aria-label="Cycle">
+      <button
+        onClick={() => onCycleClick(Cycle.Year2014)}
+        type="button"
+        className={`btn btn-secondary ${cycle === Cycle.Year2014 ? 'active' : ''}`}
+      >
+        2014
+      </button>
+      <button
+        onClick={() => onCycleClick(Cycle.Year2016)}
+        type="button"
+        className={`btn btn-secondary ${cycle === Cycle.Year2016 ? 'active' : ''}`}
+      >
+        2016
+      </button><button
+      onClick={() => onCycleClick(Cycle.Year2018)}
+      type="button"
+      className={`btn btn-secondary ${cycle === Cycle.Year2018 ? 'active' : ''}`}
+    >
+      2018
+    </button>
+    </div>
   </div>
 );
 
