@@ -14,7 +14,7 @@ import { Cycle } from './models/cycle.enum';
 import CycleSelector from './components/CycleSelector/CycleSelector';
 import 'normalize.css/normalize.css';
 import './App.scss';
-
+import SectorFilter from './components/SectorFilter/SectorFilter';
 
 interface Props {
   cycle: Cycle;
@@ -64,6 +64,7 @@ class App extends Component<Props> {
         </div>
         <div className="app__filters">
           <CycleSelector />
+          <SectorFilter />
           <IndustryFilter />
         </div>
       </div>
