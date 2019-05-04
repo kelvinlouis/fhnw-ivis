@@ -1,5 +1,12 @@
 import { Cycle } from '../../models/cycle.enum';
-import { FilterActionTypes, SET_CYCLE, SET_INDUSTRY, SET_SECTOR } from './types';
+import {
+  FilterActionTypes,
+  Industry,
+  Sector,
+  SET_CYCLE,
+  SET_INDUSTRY,
+  SET_SECTOR,
+} from './types';
 
 export const setCycle = (cycle: Cycle): FilterActionTypes => {
   return {
@@ -8,7 +15,7 @@ export const setCycle = (cycle: Cycle): FilterActionTypes => {
   };
 };
 
-export const setSector = (sector: string): FilterActionTypes => {
+export const setSector = (sector: Sector): FilterActionTypes => {
   return {
     type: SET_SECTOR,
     sector,
@@ -16,7 +23,7 @@ export const setSector = (sector: string): FilterActionTypes => {
 };
 
 
-export const setIndustry = (industry: string | null): FilterActionTypes => {
+export const setIndustry = (industry: Industry): FilterActionTypes => {
   return {
     type: SET_INDUSTRY,
     industry,

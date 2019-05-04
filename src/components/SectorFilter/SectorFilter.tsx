@@ -5,20 +5,25 @@ import { AppState } from '../../store';
 import { setSector } from '../../store/filter/actions';
 import { connect } from 'react-redux';
 import { ValueType } from 'react-select/lib/types';
+import { Sector } from '../../store/filter/types';
 
 interface Props {
-  selectedSector: string;
-  onChange: (sector: string) => void,
+  selectedSector: Sector;
+  onChange: (sector: Sector) => void,
 }
 
 type OptionType = { label: string; value: string };
 
-const options: OptionType[] = Object
-  .entries(sectors)
-  .map(([ value, label ]) => ({
-    label,
-    value,
-  }));
+const allOption: OptionType = { label: 'All', value: 'total' };
+const options: OptionType[] = [
+  allOption,
+  ...Object
+    .entries(sectors)
+    .map(([ value, label ]) => ({
+      label,
+      value,
+    }))
+];
 
 const SectorFilter: React.FC<Props> = ({ selectedSector, onChange }) => {
   const selectedOption: OptionType = options.find( o => o.value === selectedSector)!;
@@ -37,7 +42,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onChange: (sector: string) => dispatch(setSector(sector))
+  onChange: (sector: Sector) => dispatch(setSector(sector))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectorFilter)
