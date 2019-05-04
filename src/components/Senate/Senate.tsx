@@ -18,9 +18,7 @@ export class Senate extends Component<Props> {
     this.graph = null;
   }
 
-  componentDidMount() {
-    console.log(this.graph);
-  }
+  componentDidMount() {}
 
   render() {
     const { candidates } = this.props;

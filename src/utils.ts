@@ -23,6 +23,18 @@ export const getPartyColor = (candidate: CandidateModel): string => {
   } else if (candidate.party === Party.Republican) {
     return 'red'
   } else {
+    return 'white';
+  }
+};
+
+export const getPartyBorderColor = (candidate: CandidateModel): string => {
+  if (candidate.party === Party.Democrat) {
+    return 'blue';
+  } else if (candidate.party === Party.Independent) {
+    return 'grey';
+  } else if (candidate.party === Party.Republican) {
+    return 'red'
+  } else {
     return 'black';
   }
-}
+};

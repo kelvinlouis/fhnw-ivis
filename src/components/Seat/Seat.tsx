@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CandidateModel } from '../../models/candidate.model';
-import { getPartyColor } from '../../utils';
+import { getPartyBorderColor, getPartyColor } from '../../utils';
 
 interface Props {
   candidate: CandidateModel;
@@ -13,6 +13,14 @@ export class Seat extends Component<Props> {
   render() {
     const { cx, cy, r, candidate } = this.props;
 
-    return <circle cx={cx} cy={cy} r={r} fill={getPartyColor(candidate)} />;
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={r}
+        fill={getPartyColor(candidate)}
+        stroke={getPartyBorderColor(candidate)}
+      />
+    );
   }
 }

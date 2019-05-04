@@ -19,7 +19,6 @@ export class House extends Component<Props> {
   }
 
   componentDidMount() {
-    console.log(this.graph);
   }
 
   render() {

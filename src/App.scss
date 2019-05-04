@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+
+.app {
+  display: flex;
+}
+
+.app__chambers {
+  width: 60vw;
+  max-height: 100vh;
+}
+
+.app__filters {
+  width: 40vw;
+}

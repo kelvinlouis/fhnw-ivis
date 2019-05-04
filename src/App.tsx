@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.scss';
 import { House } from './components/House/House';
 import { Senate } from './components/Senate/Senate';
 import { IndustryFilter } from './components/IndustryFilter/IndustryFilter';
@@ -13,6 +12,9 @@ import { AppState } from './store';
 import { connect } from 'react-redux';
 import { Cycle } from './models/cycle.enum';
 import CycleSelector from './components/CycleSelector/CycleSelector';
+import 'normalize.css/normalize.css';
+import './App.scss';
+
 
 interface Props {
   cycle: Cycle;
@@ -23,10 +25,10 @@ class App extends Component<Props> {
     const { cycle } = this.props;
 
     const houseDemocracts: CandidateModel[] = [];
-    const houseIndependents: CandidateModel[] = [];
+    const houseOthers: CandidateModel[] = [];
     const houseRepublicans: CandidateModel[] = [];
     const senateDemocracts: CandidateModel[] = [];
-    const senateIndependents: CandidateModel[] = [];
+    const senateOthers: CandidateModel[] = [];
     const senateRepublicans: CandidateModel[] = [];
 
     const candidates: CandidateModel[] = Object.values(cycles[cycle])
@@ -41,7 +43,7 @@ class App extends Component<Props> {
         } else if (c.party === Party.Republican) {
           houseRepublicans.push(c);
         } else {
-          houseIndependents.push(c);
+          houseOthers.push(c);
         }
       } else {
         if (c.party === Party.Democrat) {
@@ -49,15 +51,17 @@ class App extends Component<Props> {
         } else if (c.party === Party.Republican) {
           senateRepublicans.push(c);
         } else {
-          senateIndependents.push(c);
+          senateOthers.push(c);
         }
       }
     });
 
     return (
       <div className="app">
-        <House candidates={[...houseDemocracts, ...houseIndependents, ...houseRepublicans]} />
-        <Senate candidates={[...senateRepublicans, ...senateIndependents, ...senateDemocracts]}  />
+        <div className="app__chambers">
+          <House candidates={[...houseDemocracts, ...houseOthers, ...houseRepublicans]} />
+          <Senate candidates={[...senateRepublicans, ...senateOthers, ...senateDemocracts]}  />
+        </div>
         <div className="app__filters">
           <CycleSelector />
           <IndustryFilter />
