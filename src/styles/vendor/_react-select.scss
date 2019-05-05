@@ -1,0 +1,28 @@
+.react-select-container {
+  .react-select__control {
+    background: $secondary;
+    border-color: $dirt;
+    box-shadow: 0 0 0 1px $secondary;
+
+    &:hover {
+      border-color: $dirt;
+    }
+  }
+
+  .react-select__dropdown-indicator {
+    color: $dirt;
+  }
+
+  .react-select__option {
+    &:hover {
+      background: $secondary;
+      color: $font-color-base;
+    }
+  }
+
+  .react-select__option--is-selected {
+    color: $white;
+    background: $dollar;
+  }
+}
+

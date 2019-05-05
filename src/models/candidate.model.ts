@@ -11,8 +11,9 @@ export class CandidateModel {
   public readonly party: Party | string;
   public readonly chamber: Chamber | string;
   public readonly state: string;
+  public readonly total: number;
 
-  constructor(candidate: Candidate) {
+  constructor(candidate: Candidate, total: number) {
     const nameParts = candidate.name.split(',');
 
     this.cid = candidate.cid;
@@ -22,5 +23,6 @@ export class CandidateModel {
     this.party = candidate.party;
     this.chamber = candidate.chamber;
     this.state = candidate.state;
+    this.total = total;
   }
 }

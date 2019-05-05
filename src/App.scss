@@ -1,12 +1,25 @@
+@import "./styles/base/variables";
+
 .app {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
 }
 
 .app__chambers {
   width: 60vw;
   max-height: 100vh;
+  padding: 3rem;
 }
 
 .app__filters {
   width: 40vw;
+  height: 100vh;
+  padding: 3rem;
+  background: lighten($dollar-light, 10%);
+
+  h1, h2, h3, h4, h5 {
+    color: darken($dirt, 20%);
+  }
 }

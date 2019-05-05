@@ -1,0 +1,33 @@
+// Colors
+$black: #000000;
+$white: #FFFFFF;
+
+// Branding
+$dollar: rgba(133, 187, 101, 1);
+$dirt: rgba(165, 151, 139, 1);
+$light: rgba(247, 247, 242, 1);
+$dollar-light: rgba(228, 230, 195, 1);
+$dark: rgba(34, 39, 37, 1);
+
+// Layout Colors
+$primary: $dollar;
+$secondary: lighten($dirt, 30%);
+$font-color-base: $dark;
+
+// Fonts
+$font-family-base: 'Amiri', serif;
+
+// Sizes
+$h1-size: 3.052em;
+$h2-size: 2.441em;
+$h3-size: 1.953em;
+$h4-size: 1.563em;
+$h5-size: 1.25em;
+
+// Bootstrap Theme Variables
+$body-color: $font-color-base;
+$body-bg: $white;
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+);
