@@ -14,11 +14,11 @@ import SectorFilter from './components/SectorFilter/SectorFilter';
 import IndustryFilter from './components/IndustryFilter/IndustryFilter';
 
 import './App.scss';
+import { Industry, Sector } from './store/filter/types';
+import CandidateCard from './components/CandidateCard/CandidateCard';
 import cycles from './data/candidate_list.json';
 import candidateData from './data/candidate_data.json';
-import { Industry, Sector } from './store/filter/types';
-import CandidateCard from './CandidateCard/CandidateCard';
-import { setSelectedCandidate } from './store/candidate/actions';
+import './App.scss';
 
 interface Props {
   cycle: Cycle;

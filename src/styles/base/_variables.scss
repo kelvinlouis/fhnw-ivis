@@ -9,6 +9,10 @@ $light: rgba(247, 247, 242, 1);
 $dollar-light: rgba(228, 230, 195, 1);
 $dark: rgba(34, 39, 37, 1);
 
+$democrat: blue;
+$independent: grey;
+$republican: red;
+
 // Fonts
 $font-family-base: 'Amiri', serif;
 
@@ -28,6 +32,13 @@ $strong-color: inherit;
 $body-background-color: $white;
 $body-color: $dark;
 $modal-background-background-color: rgba($dirt, 0.5);
+
+// Hyperlinks
+$link: darken($dollar, 20%);
+$link-hover: $dollar;
+$link-focus: $link-hover;
+$link-active: $link-hover;
+$link-visited: $link;
 
 $family-primary: $font-family-base;
 $family-secondary: $font-family-base;
