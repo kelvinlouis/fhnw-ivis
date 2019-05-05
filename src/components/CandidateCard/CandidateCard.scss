@@ -1,0 +1,39 @@
+@import "../../styles/base/variables";
+
+.card-ribbon {
+  width: 100%;
+  height: 20px;
+}
+
+.card-image-wrapper {
+  width: 200px;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+
+  a {
+    color: $body-color;
+
+    &:hover {
+      color: $link-hover;
+    }
+  }
+}
+
+.card-info {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.card-ribbon--democrat {
+  background: $democrat;
+}
+
+.card-ribbon--republican {
+  background: $republican;
+}
+
+.card-ribbon--independent {
+  background: $independent;
+}
