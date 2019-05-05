@@ -11,28 +11,23 @@ interface Props {
 
 const CycleSelector: React.FC<Props> = ({ cycle, onCycleClick }) => (
   <div>
-    <h3>Cycle</h3>
-    <div className="btn-group" role="group" aria-label="Cycle">
-      <button
-        onClick={() => onCycleClick(Cycle.Year2014)}
-        type="button"
-        className={`btn btn-secondary ${cycle === Cycle.Year2014 ? 'active' : ''}`}
-      >
-        2014
-      </button>
-      <button
-        onClick={() => onCycleClick(Cycle.Year2016)}
-        type="button"
-        className={`btn btn-secondary ${cycle === Cycle.Year2016 ? 'active' : ''}`}
-      >
-        2016
-      </button><button
-      onClick={() => onCycleClick(Cycle.Year2018)}
-      type="button"
-      className={`btn btn-secondary ${cycle === Cycle.Year2018 ? 'active' : ''}`}
-    >
-      2018
-    </button>
+    <h3 className="title">Cycle</h3>
+    <div className="field has-addons">
+      <p className="control">
+        <button onClick={() => onCycleClick(Cycle.Year2014)} className={`button is-light ${cycle === Cycle.Year2014 ? 'is-active' : ''}`}>
+          <span>2014</span>
+        </button>
+      </p>
+      <p className="control">
+        <button onClick={() => onCycleClick(Cycle.Year2016)} className={`button is-light ${cycle === Cycle.Year2016 ? 'is-active' : ''}`}>
+          <span>2016</span>
+        </button>
+      </p>
+      <p className="control">
+        <button onClick={() => onCycleClick(Cycle.Year2018)} className={`button is-light ${cycle === Cycle.Year2018 ? 'is-active' : ''}`}>
+          <span>2018</span>
+        </button>
+      </p>
     </div>
   </div>
 );

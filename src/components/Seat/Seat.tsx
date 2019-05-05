@@ -5,6 +5,9 @@ import { CandidateModel } from '../../models/candidate.model';
 import { formatMoney, getPartyColor } from '../../utils';
 import { Party } from '../../models/party.enum';
 import './Seat.scss';
+import { setSelectedCandidate } from '../../store/candidate/actions';
+import { connect } from 'react-redux';
+import { AppState } from '../../store';
 
 
 interface Props {
@@ -13,11 +16,12 @@ interface Props {
   cx: string;
   cy: string;
   r: string;
+  onClick?: (candidate: CandidateModel) => void;
 }
 
-export class Seat extends Component<Props> {
+class Seat extends Component<Props> {
   render() {
-    const { cx, cy, r, candidate, max } = this.props;
+    const { cx, cy, r, candidate, max, onClick } = this.props;
     const color = getPartyColor(candidate, max)!;
     const darker = d3.color(color)!.darker(1);
     const border = darker.toString();
@@ -26,7 +30,7 @@ export class Seat extends Component<Props> {
 
     const tooltip = (
       <span>
-        <strong>{candidate.fullName}</strong>
+        <span><strong>{candidate.fullName}</strong></span>
         <span className="seat__money">{formatMoney(candidate.total)}</span>
       </span>
     );
@@ -41,8 +45,19 @@ export class Seat extends Component<Props> {
           stroke={border}
           strokeWidth={0.6}
           className={className}
+          onClick={() => onClick != null ? onClick(candidate) : () => {}}
         />
       </Tippy>
     );
   }
 }
+
+const mapStateToProps = (state: AppState, props: Props) => ({
+  ...props,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  onClick: (candidate: CandidateModel) => dispatch(setSelectedCandidate(candidate)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Seat);

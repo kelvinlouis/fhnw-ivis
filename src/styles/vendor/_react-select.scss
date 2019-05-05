@@ -10,13 +10,13 @@
   }
 
   .react-select__dropdown-indicator {
-    color: $dirt;
+    color: $body-color;
   }
 
   .react-select__option {
     &:hover {
       background: $secondary;
-      color: $font-color-base;
+      color: $body-color;
     }
   }
 

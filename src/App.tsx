@@ -17,6 +17,8 @@ import './App.scss';
 import cycles from './data/candidate_list.json';
 import candidateData from './data/candidate_data.json';
 import { Industry, Sector } from './store/filter/types';
+import CandidateCard from './CandidateCard/CandidateCard';
+import { setSelectedCandidate } from './store/candidate/actions';
 
 interface Props {
   cycle: Cycle;
@@ -112,6 +114,7 @@ class App extends Component<Props> {
           <SectorFilter />
           <IndustryFilter />
         </div>
+        <CandidateCard />
       </div>
     );
   }
