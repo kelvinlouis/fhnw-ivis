@@ -1,0 +1,24 @@
+@import "../../styles/base/variables";
+
+.bar--normal {
+  fill: $dirt;
+  stroke: lighten($dirt, 20%);
+}
+
+.bar--selected {
+  fill: $dollar;
+  stroke: $dollar-light;
+}
+
+.bar__click {
+  fill: transparent;
+}
+
+.bar__click:hover {
+  fill: rgba($dirt, .1);
+  cursor: pointer;
+}
+
+.chart__text {
+  font-family: $font-family-base;
+}

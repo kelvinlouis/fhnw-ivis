@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { House } from './components/House/House';
 import { Senate } from './components/Senate/Senate';
-import { IndustryFilter } from './components/IndustryFilter/IndustryFilter';
 import { CandidateModel } from './models/candidate.model';
 import { Candidate } from './models/candidate';
 import { compareByName } from './utils';
@@ -12,6 +11,9 @@ import { connect } from 'react-redux';
 import { Cycle } from './models/cycle.enum';
 import CycleSelector from './components/CycleSelector/CycleSelector';
 import SectorFilter from './components/SectorFilter/SectorFilter';
+import IndustryFilter from './components/IndustryFilter/IndustryFilter';
+
+import './App.scss';
 import { Industry, Sector } from './store/filter/types';
 import CandidateCard from './components/CandidateCard/CandidateCard';
 import cycles from './data/candidate_list.json';
