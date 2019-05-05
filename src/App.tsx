@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { House } from './components/House/House';
 import { Senate } from './components/Senate/Senate';
-<<<<<<< HEAD
-import cycles from './data/candidate_list.json';
-=======
-import { IndustryFilter } from './components/IndustryFilter/IndustryFilter';
->>>>>>> remotes/origin/develop
 import { CandidateModel } from './models/candidate.model';
 import { Candidate } from './models/candidate';
 import { compareByName } from './utils';

@@ -1112,8 +1112,6 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-<<<<<<< HEAD
-=======
 "@tippy.js/react@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@tippy.js/react/-/react-2.1.2.tgz#2f51a206d3b90ee2423574bf256c76e1cf2b3e53"
@@ -1122,7 +1120,6 @@
     prop-types "^15.6.2"
     tippy.js "^4.2.1"
 
->>>>>>> remotes/origin/develop
 "@types/d3-array@*":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-2.0.0.tgz#a0d63a296a2d8435a9ec59393dcac746c6174a96"
