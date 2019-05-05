@@ -10,7 +10,7 @@ interface Props {
 }
 
 const CycleSelector: React.FC<Props> = ({ cycle, onCycleClick }) => (
-  <div>
+  <div className="app__filter">
     <h3 className="title">Cycle</h3>
     <div className="field has-addons">
       <p className="control">

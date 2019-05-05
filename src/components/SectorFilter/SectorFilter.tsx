@@ -29,7 +29,7 @@ const SectorFilter: React.FC<Props> = ({ selectedSector, onChange }) => {
   const selectedOption: OptionType = options.find( o => o.value === selectedSector)!;
 
   return (
-    <div>
+    <div className="app__filter">
       <h3>Sector</h3>
       <Select
         options={options}
