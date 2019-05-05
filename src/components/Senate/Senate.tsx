@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Senate.scss';
 import { CandidateModel } from '../../models/candidate.model';
 import { coordinates } from './senate-coordinates';
-import { Seat } from '../Seat/Seat';
+import Seat from '../Seat/Seat';
 import { formatMoney } from '../../utils';
 
 interface Props {
