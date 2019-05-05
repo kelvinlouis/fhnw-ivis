@@ -1,0 +1,15 @@
+@import "../../styles/base/variables";
+
+.bar--normal {
+  fill: $dirt;
+  stroke: lighten($dirt, 20%);
+}
+
+.bar--selected {
+  fill: $dollar;
+  stroke: $dollar-light;
+}
+
+.chart__text {
+  font-family: $font-family-base;
+}

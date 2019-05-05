@@ -6,6 +6,7 @@ import industryList from '../../data/industry_list.json'
 import { setIndustry } from '../../store/filter/actions';
 import * as d3 from 'd3';
 import { Cycle } from '../../models/cycle.enum';
+import './IndustryFilter.scss';
 
 interface Props {
   selectedCycle: Cycle;
@@ -54,7 +55,12 @@ class IndustryFilter extends Component<Props> {
         dx = parseFloat(text.attr('dx')),
         y = text.attr('y'),
         dy = parseFloat(text.attr('dy')),
-        tspan = text.text(null).append('tspan').attr('x', x).attr('y', 0).attr('dx', `${dx}em`);
+        tspan = text
+          .text(null)
+          .append('tspan')
+          .attr('x', x)
+          .attr('y', 0)
+          .attr('dx', `${dx}em`);
       while (word = words.pop()) {
         line.push(word);
         tspan.text(line.join(' '));
@@ -62,14 +68,19 @@ class IndustryFilter extends Component<Props> {
           line.pop();
           tspan.text(line.join(' '));
           line = [word];
-          tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', `${++lineNumber * lineHeight + dy}em`).text(word);
+          tspan = text
+            .append('tspan')
+            .attr('x', x)
+            .attr('y', y)
+            .attr('dy', `${++lineNumber * lineHeight + dy}em`)
+            .text(word);
         }
       }
     });
   }
 
   componentDidUpdate() {
-    const { selectedCycle, selectedSector, selectedIndustry, onChange } = this.props;
+    const { selectedCycle, selectedSector, selectedIndustry } = this.props;
 
     const data: IndustryData = industryList;
     const label: IndustryMap = industryMap;
@@ -111,6 +122,7 @@ class IndustryFilter extends Component<Props> {
 
     chart.append('g')
       .attr('transform', `translate(0, ${height})`)
+      .attr('class', 'chart__text')
       .call(
         d3.axisBottom(xScale)
           .tickFormat(d3.format('.2s'))
@@ -118,6 +130,7 @@ class IndustryFilter extends Component<Props> {
 
     chart.append('g')
       .call(d3.axisLeft(yScale))
+      .attr('class', 'chart__text')
       .selectAll('.tick text')
       .call(this.wrapChartLabel, 90);
 
@@ -133,11 +146,11 @@ class IndustryFilter extends Component<Props> {
       .attr('y', g => yScale(g.industry)!)
       .attr('height', yScale.bandwidth())
       .attr('width', g => width - xScale(g.value))
-      .attr('fill', function (d) {
+      .attr('class', function (d) {
         if (d.industry === selectedIndustryLabel) {
-          return 'red';
+          return 'bar--selected';
         } else {
-          return 'black';
+          return 'bar--normal';
         }
       })
 
@@ -173,7 +186,7 @@ class IndustryFilter extends Component<Props> {
 
   render() {
     return (
-      <div className='bar-chart'>
+      <div>
         <h3>Industries</h3>
         <svg ref={svg => this.graph = svg} />
       </div>
