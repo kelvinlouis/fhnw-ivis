@@ -42,6 +42,14 @@ class IndustryFilter extends Component<Props> {
     this.graph = null;
   }
 
+  componentDidMount() {
+    this.drawBarChart();
+  }
+
+  componentDidUpdate() {
+    this.drawBarChart();
+  }
+
   wrapChartLabel(text: d3.Selection<d3.BaseType, {}, SVGGElement, {}>, width: number): void {
     // Source: https://bl.ocks.org/mbostock/7555321
     text.each(function () {
@@ -79,7 +87,7 @@ class IndustryFilter extends Component<Props> {
     });
   }
 
-  componentDidUpdate() {
+  drawBarChart() {
     const { selectedCycle, selectedSector, selectedIndustry } = this.props;
 
     const data: IndustryData = industryList;
