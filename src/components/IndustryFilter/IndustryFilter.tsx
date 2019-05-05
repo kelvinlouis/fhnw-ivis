@@ -53,16 +53,16 @@ class IndustryFilter extends Component<Props> {
   wrapChartLabel(text: d3.Selection<d3.BaseType, {}, SVGGElement, {}>, width: number): void {
     // Source: https://bl.ocks.org/mbostock/7555321
     text.each(function () {
-      var text = d3.select(this),
+      const text = d3.select(this),
         words = text.text().split(/\s+|\//).reverse(),
-        word,
-        line: string[] = [],
-        lineNumber = 0,
-        lineHeight = 1.1, // ems
+        lineHeight = 1.1,
         x = text.attr('x'),
         dx = parseFloat(text.attr('dx')),
         y = text.attr('y'),
-        dy = parseFloat(text.attr('dy')),
+        dy = parseFloat(text.attr('dy'))
+      let word,
+        lineNumber = 0,
+        line: string[] = [],
         tspan = text
           .text(null)
           .append('tspan')
@@ -109,7 +109,7 @@ class IndustryFilter extends Component<Props> {
 
     svg.selectAll('*').remove();
 
-    svg.attr('viewBox', `0 0 500 500`)
+    svg.attr('viewBox', `0 0 500 500`);
 
     const margin = { top: 10, right: 10, bottom: 30, left: 100 };
     const width = 500 - (margin.left + margin.right);
@@ -169,9 +169,7 @@ class IndustryFilter extends Component<Props> {
       .attr('y', g => yScale(g.industry)!)
       .attr('height', yScale.bandwidth())
       .attr('width', width)
-      .attr('fill', function (d) {
-        return 'transparent';
-      })
+      .attr('class', 'bar__click')
       .on('click', d => {
         if (d.industry === selectedIndustryLabel) {
           this.onSelectIndustry(null)
