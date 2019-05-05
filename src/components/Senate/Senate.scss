@@ -11,11 +11,13 @@ $money-width: 200px;
 
 .senate__title {
   position: absolute;
-  bottom: 0;
-  right: 1rem;
+  bottom: 65%;
+  left: calc(50% - #{$money-width * 0.5});
+  width: $money-width;
   font-size: $h2-size;
   color: $dirt;
   transition: font-size;
+  text-align: center;
 }
 
 .senate__total {
@@ -34,4 +36,39 @@ $money-width: 200px;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+
+.senate__party {
+  position: absolute;
+  text-align: center;
+}
+
+.senate__party-total {
+  margin-top: -0.5rem;
+  display: block;
+  color: darken($dirt, 10%);
+}
+
+.senate__party-title {
+  display: block;
+  font-size: $h4-size;
+}
+
+.senate__party--democrats {
+  bottom: 0;
+  left: 0;
+
+  .senate__party-title {
+    color: lighten($democrat, 10%);
+  }
+}
+
+.senate__party--republicans {
+  bottom: 0;
+  right: 0;
+
+  .senate__party-title {
+    color: darken($republican, 10%);
+  }
 }

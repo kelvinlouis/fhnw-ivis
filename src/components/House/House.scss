@@ -12,10 +12,12 @@ $money-width: 200px;
 
 .house__title {
   position: absolute;
-  top: 0;
-  right: 1rem;
+  top: 65%;
+  left: calc(50% - #{$money-width * 0.5});
+  width: $money-width;
   font-size: $h2-size;
   color: $dirt;
+  text-align: center;
   transition: font-size;
 }
 
@@ -34,4 +36,38 @@ $money-width: 200px;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.house__party {
+  position: absolute;
+  text-align: center;
+}
+
+.house__party-total {
+  margin-top: -0.5rem;
+  display: block;
+  color: darken($dirt, 10%);
+}
+
+.house__party-title {
+  display: block;
+  font-size: $h4-size;
+}
+
+.house__party--democrats {
+  top: 0;
+  left: 0;
+
+  .house__party-title {
+    color: lighten($democrat, 10%);
+  }
+}
+
+.house__party--republicans {
+  top: 0;
+  right: 0;
+
+  .house__party-title {
+    color: darken($republican, 10%);
+  }
 }

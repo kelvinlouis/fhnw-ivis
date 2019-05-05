@@ -2,6 +2,13 @@ import { CandidateModel } from './models/candidate.model';
 import { Party } from './models/party.enum';
 import { scaleLinear } from 'd3-scale';
 import { Chamber } from './models/chamber.enum';
+import {
+  COLOR_DEMOCRAT,
+  COLOR_DEMOCRAT_LIGHT,
+  COLOR_INDEPENDENT,
+  COLOR_INDEPENDENT_LIGHT,
+  COLOR_REPUBLICAN, COLOR_REPUBLICAN_LIGHT
+} from './constants';
 
 export const compareByFullName = (c1: CandidateModel, c2: CandidateModel): number => {
   const name1 = c1.fullName.toUpperCase();
@@ -22,13 +29,13 @@ export const getPartyColor = (candidate: CandidateModel, max: number): string =>
 
   const democratScale = scaleLinear<string>()
     .domain(domain)
-    .range(['white', 'blue']);
+    .range([COLOR_DEMOCRAT_LIGHT, COLOR_DEMOCRAT]);
   const independentScale = scaleLinear<string>()
     .domain(domain)
-    .range(['white', 'grey']);
+    .range([COLOR_INDEPENDENT_LIGHT, COLOR_INDEPENDENT]);
   const republicanScale = scaleLinear<string>()
     .domain(domain)
-    .range(['white', 'red']);
+    .range([COLOR_REPUBLICAN_LIGHT, COLOR_REPUBLICAN]);
 
   if (candidate.party === Party.Democrat) {
     return democratScale(candidate.total);
