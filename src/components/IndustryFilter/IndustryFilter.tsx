@@ -57,8 +57,6 @@ class IndustryFilter extends Component<Props> {
         words = text.text().split(/\s+|\//).reverse(),
         lineHeight = 1.1,
         x = text.attr('x'),
-        dx = parseFloat(text.attr('dx')),
-        y = text.attr('y'),
         dy = parseFloat(text.attr('dy'))
       let word,
         lineNumber = 0,
@@ -68,7 +66,7 @@ class IndustryFilter extends Component<Props> {
           .append('tspan')
           .attr('x', x)
           .attr('y', 0)
-          .attr('dx', `${dx}em`);
+          .attr('dy', `${lineNumber++ * lineHeight + dy}em`);
       while (word = words.pop()) {
         line.push(word);
         tspan.text(line.join(' '));
@@ -79,8 +77,8 @@ class IndustryFilter extends Component<Props> {
           tspan = text
             .append('tspan')
             .attr('x', x)
-            .attr('y', y)
-            .attr('dy', `${++lineNumber * lineHeight + dy}em`)
+            .attr('y', 0)
+            .attr('dy', `${lineNumber++ * lineHeight + dy}em`)
             .text(word);
         }
       }
@@ -113,7 +111,7 @@ class IndustryFilter extends Component<Props> {
 
     const margin = { top: 10, right: 10, bottom: 30, left: 100 };
     const width = 500 - (margin.left + margin.right);
-    const height = chartDataArray.length * 30;
+    const height = chartDataArray.length * 25;
 
     const chart = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
@@ -126,7 +124,7 @@ class IndustryFilter extends Component<Props> {
     const yScale = d3.scaleBand()
       .range([0, height])
       .domain(chartDataArray.map(i => i.industry))
-      .padding(0.3);
+      .padding(0.2);
 
     chart.append('g')
       .attr('transform', `translate(0, ${height})`)
