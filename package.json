@@ -8,6 +8,7 @@
     "@types/react": "^16.8.15",
     "@types/react-dom": "^16.8.4",
     "d3": "^5.9.1",
+    "d3-scale": "^3.0.0",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.4",
@@ -34,6 +35,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/d3": "^5.7.2",
+    "@types/d3-scale": "^2.1.1",
     "@types/react-redux": "^7.0.8",
     "@types/react-select": "^2.0.17"
   }
