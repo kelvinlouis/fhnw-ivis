@@ -38,7 +38,7 @@ class CandidateCard extends Component<Props> {
                 <figure className="media-left">
                   <div className="card-image-wrapper">
                     <a href={`http://bioguide.congress.gov/scripts/biodisplay.pl?index=${bioid}`} target="_blank">
-                      <img src={`/pictures/${cid}.jpg`} alt={fullName} />
+                      <img src={`pictures/${cid}.jpg`} alt={fullName} />
                     </a>
                   </div>
                 </figure>
