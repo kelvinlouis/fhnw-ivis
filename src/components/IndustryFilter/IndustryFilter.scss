@@ -19,6 +19,11 @@
   cursor: pointer;
 }
 
+.bar__label {
+  text-anchor: end;
+  font-size: .7rem;
+}
+
 .chart__text {
   font-family: $font-family-base;
 }

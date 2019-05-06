@@ -7,6 +7,7 @@ import { setIndustry } from '../../store/filter/actions';
 import * as d3 from 'd3';
 import { Cycle } from '../../models/cycle.enum';
 import './IndustryFilter.scss';
+import { toUnicode } from 'punycode';
 
 interface Props {
   selectedCycle: Cycle;
@@ -98,7 +99,7 @@ class IndustryFilter extends Component<Props> {
       .sort((a, b) => (a.value < b.value) ? 1 : -1);
     const maxMoney = Object.keys(chartData)
       .filter(k => k !== 'total')
-      .reduce((m, k) => { return chartData[k] > m ? chartData[k] : m }, -Infinity);
+      .reduce((m, k) => { return chartData[k] > m ? chartData[k] : m }, -Infinity) * 1.1;
 
     const selectedIndustryLabel = selectedIndustry && label[selectedIndustry];
 
@@ -118,8 +119,7 @@ class IndustryFilter extends Component<Props> {
 
     const xScale = d3.scaleLinear()
       .range([0, width])
-      .domain([maxMoney, 0])
-      .nice();
+      .domain([maxMoney, 0]);
 
     const yScale = d3.scaleBand()
       .range([0, height])
@@ -147,7 +147,6 @@ class IndustryFilter extends Component<Props> {
 
     barGroups
       .append('rect')
-      .attr('class', 'bar')
       .attr('x', g => xScale(g.value))
       .attr('y', g => yScale(g.industry)!)
       .attr('height', yScale.bandwidth())
@@ -162,7 +161,6 @@ class IndustryFilter extends Component<Props> {
 
     barGroups
       .append('rect')
-      .attr('class', 'clickbar')
       .attr('x', xScale.domain()[1])
       .attr('y', g => yScale(g.industry)!)
       .attr('height', yScale.bandwidth())
@@ -175,6 +173,15 @@ class IndustryFilter extends Component<Props> {
           this.onSelectIndustry(d)
         }
       });
+
+    barGroups
+      .append('text')
+      .attr("class", 'bar__label')
+      .attr("transform", `translate(-3,14)`)
+      .attr('x', g => xScale(g.value))
+      .attr('y', g => yScale(g.industry)!)
+      .text(g => d3.format('.2s')(g.value));
+
   }
 
   onSelectIndustry(d: IndustryDataEntry | null) {
