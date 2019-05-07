@@ -6,17 +6,34 @@ import states from '../../data/states.json';
 import './CandidateCard.scss';
 import { AppState } from '../../store';
 import { setSelectedCandidate } from '../../store/candidate/actions';
+import { SectorMap } from '../SectorMap/SectorMap';
+import { StatesMapJson } from '../../data/types';
 
 interface Props {
   candidate: CandidateModel | null;
   onClose: () => void;
 }
 
-interface StatesMap {
-  [initials: string]: string;
-}
-
 class CandidateCard extends Component<Props> {
+  constructor(props: Props){
+    super(props);
+  }
+
+  onEsc = (event: KeyboardEvent): void => {
+    const { onClose } = this.props;
+    if(event.keyCode === 27) {
+      onClose();
+    }
+  };
+
+  componentDidMount(){
+    document.addEventListener('keydown', this.onEsc, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener('keydown', this.onEsc, false);
+  }
+
   render() {
     const { candidate, onClose } = this.props;
 
@@ -25,7 +42,7 @@ class CandidateCard extends Component<Props> {
     }
 
     const { cid, party, fullName, state, birthday, bioid, chamber, cycle } = candidate;
-    const stateMap: StatesMap = states;
+    const stateMap: StatesMapJson = states;
 
     return (
       <div className="modal is-active">
@@ -55,6 +72,7 @@ class CandidateCard extends Component<Props> {
                 </div>
               </article>
             </div>
+            <SectorMap candidate={candidate} />
           </div>
         </div>
         <button

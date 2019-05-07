@@ -1,10 +1,10 @@
 import { CandidateModel } from './models/candidate.model';
 import { Party } from './models/party.enum';
-import { scaleLinear } from 'd3-scale';
+import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Chamber } from './models/chamber.enum';
 import {
   COLOR_DEMOCRAT,
-  COLOR_DEMOCRAT_LIGHT,
+  COLOR_DEMOCRAT_LIGHT, COLOR_DOLLAR,
   COLOR_INDEPENDENT,
   COLOR_INDEPENDENT_LIGHT,
   COLOR_REPUBLICAN, COLOR_REPUBLICAN_LIGHT
@@ -24,18 +24,35 @@ export const compareByName = (c1: CandidateModel, c2: CandidateModel): number =>
   return (name1 < name2) ? -1 : (name1 > name2) ? 1 : 0;
 };
 
-export const getPartyColor = (candidate: CandidateModel, max: number): string => {
-  const domain = [0, max];
+export const getLinearColorScale = (min: number, max: number, minColor: string, maxColor: string): ScaleLinear<string, string> => {
+  const domain = [min, max];
+  const range = [minColor, maxColor];
 
-  const democratScale = scaleLinear<string>()
+  return scaleLinear<string>()
     .domain(domain)
-    .range([COLOR_DEMOCRAT_LIGHT, COLOR_DEMOCRAT]);
-  const independentScale = scaleLinear<string>()
-    .domain(domain)
-    .range([COLOR_INDEPENDENT_LIGHT, COLOR_INDEPENDENT]);
-  const republicanScale = scaleLinear<string>()
-    .domain(domain)
-    .range([COLOR_REPUBLICAN_LIGHT, COLOR_REPUBLICAN]);
+    .range(range);
+};
+
+export const getDolorLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
+  return getLinearColorScale(min, max, 'white', COLOR_DOLLAR);
+};
+
+export const getDemocratLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
+  return getLinearColorScale(0, max, COLOR_DEMOCRAT_LIGHT, COLOR_DEMOCRAT);
+};
+
+export const getIndependentLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
+  return getLinearColorScale(0, max, COLOR_INDEPENDENT_LIGHT, COLOR_INDEPENDENT);
+};
+
+export const getRepublicanLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
+  return getLinearColorScale(0, max, COLOR_REPUBLICAN_LIGHT, COLOR_REPUBLICAN);
+};
+
+export const getPartyColor = (candidate: CandidateModel, max: number): string => {
+  const democratScale = getDemocratLinearScale(0, max);
+  const independentScale = getIndependentLinearScale(0, max);
+  const republicanScale = getRepublicanLinearScale(0, max);
 
   if (candidate.party === Party.Democrat) {
     return democratScale(candidate.total);
