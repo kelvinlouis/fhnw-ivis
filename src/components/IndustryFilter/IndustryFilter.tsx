@@ -19,7 +19,11 @@ interface Props {
 interface IndustryData {
   [cycle: string]: {
     [sector: string]: {
-      [industry: string]: number;
+      [industry: string]: {
+        total?: number;
+        pacs?: number;
+        indivs?: number;
+      }
     }
   }
 }
@@ -31,6 +35,8 @@ interface IndustryMap {
 interface IndustryDataEntry {
   industry: string;
   value: number;
+  pacs: number;
+  indivs: number;
 }
 
 class IndustryFilter extends Component<Props> {
@@ -92,29 +98,38 @@ class IndustryFilter extends Component<Props> {
     const data: IndustryData = industryList;
     const label: IndustryMap = industryMap;
 
-    const chartData = data[selectedCycle][selectedSector];
-    const chartDataArray: IndustryDataEntry[] = Object.keys(chartData)
+    const barChartData = data[selectedCycle][selectedSector];
+    const barChartDataArray: IndustryDataEntry[] = Object.keys(barChartData)
       .filter(k => k !== 'total')
-      .map(k => ({ industry: label[k], value: chartData[k] }))
+      .map(k => ({
+        industry: label[k],
+        value: barChartData[k].total || 0,
+        pacs: barChartData[k].pacs || 0,
+        indivs: barChartData[k].indivs || 0,
+      }))
       .sort((a, b) => (a.value < b.value) ? 1 : -1);
-    const maxMoney = Object.keys(chartData)
+
+    const maxMoney = Object.keys(barChartData)
       .filter(k => k !== 'total')
-      .reduce((m, k) => { return chartData[k] > m ? chartData[k] : m }, -Infinity) * 1.1;
+      .reduce((m, k) => {
+        return ((barChartData[k].total || 0) > m ? barChartData[k].total : m) || 0
+      }, -Infinity) * 1.1;
 
     const selectedIndustryLabel = selectedIndustry && label[selectedIndustry];
 
     // Source: https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/
     const svg = d3.select(this.graph);
 
-    svg.selectAll('*').remove();
-
     svg.attr('viewBox', `0 0 500 500`);
 
-    const margin = { top: 10, right: 10, bottom: 30, left: 100 };
+    const margin = { top: 10, right: 10, bottom: 10, left: 100 };
     const width = 500 - (margin.left + margin.right);
-    const height = chartDataArray.length * 25;
+    const height = barChartDataArray.length * 25;
+
+    svg.selectAll('#bar-chart').remove();
 
     const chart = svg.append('g')
+      .attr('id', 'bar-chart')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     const xScale = d3.scaleLinear()
@@ -123,7 +138,7 @@ class IndustryFilter extends Component<Props> {
 
     const yScale = d3.scaleBand()
       .range([0, height])
-      .domain(chartDataArray.map(i => i.industry))
+      .domain(barChartDataArray.map(i => i.industry))
       .padding(0.2);
 
     chart.append('g')
@@ -141,27 +156,43 @@ class IndustryFilter extends Component<Props> {
       .call(this.wrapChartLabel, 90);
 
     const barGroups = chart.selectAll()
-      .data(chartDataArray)
+      .data(barChartDataArray)
       .enter()
       .append('g')
 
     barGroups
       .append('rect')
-      .attr('x', g => xScale(g.value))
+      .attr('id', function (d, i) { return 'bar__indivs-' + i; })
+      .attr('x', g => xScale(g.indivs))
       .attr('y', g => yScale(g.industry)!)
       .attr('height', yScale.bandwidth())
-      .attr('width', g => width - xScale(g.value))
+      .attr('width', g => width - xScale(g.indivs))
       .attr('class', function (d) {
         if (d.industry === selectedIndustryLabel) {
-          return 'bar--selected';
+          return 'bar__indivs--selected';
         } else {
-          return 'bar--normal';
+          return 'bar__indivs--normal';
         }
-      })
+      });
 
     barGroups
       .append('rect')
-      .attr('x', xScale.domain()[1])
+      .attr('id', function (d, i) { return 'bar__pacs-' + i; })
+      .attr('x', g => xScale(g.indivs) - (width - xScale(g.pacs)))
+      .attr('y', g => yScale(g.industry)!)
+      .attr('height', yScale.bandwidth())
+      .attr('width', g => width - xScale(g.pacs))
+      .attr('class', function (d) {
+        if (d.industry === selectedIndustryLabel) {
+          return 'bar__pacs--selected';
+        } else {
+          return 'bar__pacs--normal';
+        }
+      });
+
+    barGroups
+      .append('rect')
+      .attr('x', 0)
       .attr('y', g => yScale(g.industry)!)
       .attr('height', yScale.bandwidth())
       .attr('width', width)
@@ -176,12 +207,37 @@ class IndustryFilter extends Component<Props> {
 
     barGroups
       .append('text')
-      .attr("class", 'bar__label')
-      .attr("transform", `translate(-3,14)`)
+      .attr('id', function (d, i) { return 'bar-label-' + i; })
+      .attr('class', 'bar__label')
+      .attr('transform', `translate(-3,14)`)
       .attr('x', g => xScale(g.value))
       .attr('y', g => yScale(g.industry)!)
       .text(g => d3.format('.2s')(g.value));
 
+    // Source: https://www.d3-graph-gallery.com/graph/custom_legend.html
+    const legend = chart.append('g')
+      .attr('transform', `translate(0, ${height + margin.bottom})`)
+      .attr('class', 'chart__text');
+
+    legend.append('circle')
+      .attr('cx', 10)
+      .attr('cy', 25)
+      .attr('r', 6)
+      .attr('class', 'bar__pacs--selected');
+    legend
+      .append('circle')
+      .attr('cx', 200)
+      .attr('cy', 25)
+      .attr('r', 6)
+      .attr('class', 'bar__indivs--selected');
+    legend.append('text')
+      .attr('x', 20)
+      .attr('y', 30)
+      .text('PAC Contributions');
+    legend.append('text')
+      .attr('x', 210)
+      .attr('y', 30)
+      .text('Individual Contributions');
   }
 
   onSelectIndustry(d: IndustryDataEntry | null) {

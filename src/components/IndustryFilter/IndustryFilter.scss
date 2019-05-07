@@ -1,13 +1,19 @@
-@import "../../styles/base/variables";
+@import '../../styles/base/variables';
 
-.bar--normal {
-  fill: $dirt;
-  stroke: lighten($dirt, 20%);
+.bar__indivs--normal {
+  fill: lighten($dirt, 15%);
 }
 
-.bar--selected {
+.bar__pacs--normal {
+  fill: lighten($dollar, 15%);
+}
+
+.bar__indivs--selected {
+  fill: $dirt;
+}
+
+.bar__pacs--selected {
   fill: $dollar;
-  stroke: $dollar-light;
 }
 
 .bar__click {
