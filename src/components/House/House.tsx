@@ -5,11 +5,12 @@ import { coordinates } from './house-coordinates';
 import Seat from '../Seat/Seat';
 import { formatMoney } from '../../utils';
 import { Party } from '../../models/party.enum';
+import { Chamber } from '../../models/chamber.enum';
 import { INITIAL_ANIMATION_DURATION } from '../../constants';
 
 interface Props {
-  max: number;
   candidates: CandidateModel[];
+  colorScale: (chamber: Chamber) => (candidate: CandidateModel) => string;
 }
 
 export class House extends Component<Props> {
@@ -23,7 +24,7 @@ export class House extends Component<Props> {
   }
 
   render() {
-    const { candidates, max } = this.props;
+    const { candidates, colorScale } = this.props;
     const total = candidates.reduce((agg, candidate) => agg + candidate.total, 0);
 
     const totalDemocrats = candidates
@@ -33,6 +34,8 @@ export class House extends Component<Props> {
     const totalRepublicans = candidates
       .filter(c => c.party === Party.Republican)
       .reduce((agg, candidate) => agg + candidate.total, 0);
+
+    const houseColorScale = colorScale(Chamber.House)
 
     return (
       <div className="house house--initial-render" ref={el => (this.el = el)}>
@@ -50,7 +53,7 @@ export class House extends Component<Props> {
           {candidates.map((c, index) => (
             <Seat
               key={c.cid}
-              max={max}
+              colorScale={houseColorScale}
               candidate={c}
               {...coordinates[index]}
             />
