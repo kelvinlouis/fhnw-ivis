@@ -18,6 +18,10 @@
 
 .bar__click {
   fill: transparent;
+  &:focus {
+    outline: 0;
+    border: 0;
+  }
 }
 
 .bar__click:hover {
