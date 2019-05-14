@@ -68,6 +68,7 @@ export const getPartyColor = (candidate: CandidateModel, max: number): string =>
 export const moneyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
+  maximumSignificantDigits: 3,
 });
 
 export const formatMoney = (value: number) => {
