@@ -4,16 +4,12 @@ import tippy from 'tippy.js';
 import { CandidateModel } from '../../models/candidate.model';
 import sectors from '../../data/sector_map.json';
 import candidates from '../../data/candidate_data.json';
-import { CandidateDataJson, SectorMapJson } from '../../data/types';
+import { CandidateDataJson, SectorMapJson } from '../../types';
 import {
   formatMoney,
-  getDemocratLinearScale, getDolorLinearScale,
-  getIndependentLinearScale,
-  getRepublicanLinearScale,
+  getDolorLinearScale,
 } from '../../utils';
 import './SectorMap.scss';
-import { ScaleLinear } from 'd3';
-import { Party } from '../../models/party.enum';
 
 interface Props {
   candidate: CandidateModel;

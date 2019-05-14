@@ -7,7 +7,7 @@ import './CandidateCard.scss';
 import { AppState } from '../../store';
 import { setSelectedCandidate } from '../../store/candidate/actions';
 import { SectorMap } from '../SectorMap/SectorMap';
-import { StatesMapJson } from '../../data/types';
+import { StatesMapJson } from '../../types';
 
 interface Props {
   candidate: CandidateModel | null;

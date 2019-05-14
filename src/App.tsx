@@ -19,7 +19,7 @@ import CandidateCard from './components/CandidateCard/CandidateCard';
 import cycles from './data/candidate_list.json';
 import candidateData from './data/candidate_data.json';
 import './App.scss';
-import { CandidateDataJson } from './data/types';
+import { CandidateDataJson } from './types';
 
 interface Props {
   cycle: Cycle;
