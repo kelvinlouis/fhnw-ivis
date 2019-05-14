@@ -15,13 +15,27 @@ interface Props {
   max: number;
   cx: string;
   cy: string;
-  r: string;
   onClick?: (candidate: CandidateModel) => void;
 }
 
 class Seat extends Component<Props> {
+  private el: SVGElement | null = null;
+
+  componentDidMount() {
+    if (this.el != null) {
+      // Remove the classes responsible for the animation
+      this.el.addEventListener('animationend', () => {
+        this.el!.classList.remove('animation--zoom-in');
+        this.el!.classList.add('seat--filled');
+      });
+
+      // Start animation
+      this.el.classList.add('animation--zoom-in');
+    }
+  }
+
   render() {
-    const { cx, cy, r, candidate, max, onClick } = this.props;
+    const { cx, cy, candidate, max, onClick } = this.props;
     const color = getPartyColor(candidate, max)!;
     const darker = d3.color(color)!.darker(1);
     const border = darker.toString();
@@ -40,12 +54,12 @@ class Seat extends Component<Props> {
         <circle
           cx={cx}
           cy={cy}
-          r={r}
           fill={color}
           stroke={border}
           strokeWidth={0.6}
           className={className}
           onClick={() => onClick != null ? onClick(candidate) : () => {}}
+          ref={el => (this.el = el)}
         />
       </Tippy>
     );

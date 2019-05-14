@@ -5,6 +5,7 @@ import { coordinates } from './house-coordinates';
 import Seat from '../Seat/Seat';
 import { formatMoney } from '../../utils';
 import { Party } from '../../models/party.enum';
+import { INITIAL_ANIMATION_DURATION } from '../../constants';
 
 interface Props {
   max: number;
@@ -12,16 +13,14 @@ interface Props {
 }
 
 export class House extends Component<Props> {
-  private graph: SVGElement | null;
+  private graph: SVGElement | null = null;
+  private el: HTMLDivElement | null = null;
 
-  constructor(props: Props) {
-    super(props);
-
-    // Reference to svg element
-    this.graph = null;
+  componentDidMount() {
+    setTimeout(() => {
+      this.el!.classList.remove('house--initial-render');
+    }, INITIAL_ANIMATION_DURATION);
   }
-
-  componentDidMount() {}
 
   render() {
     const { candidates, max } = this.props;
@@ -36,7 +35,7 @@ export class House extends Component<Props> {
       .reduce((agg, candidate) => agg + candidate.total, 0);
 
     return (
-      <div className="house">
+      <div className="house house--initial-render" ref={el => (this.el = el)}>
         <div className="house__title">House</div>
         <div className="house__total">{formatMoney(total)}</div>
         <div className="house__party house__party--democrats">
@@ -54,7 +53,6 @@ export class House extends Component<Props> {
               max={max}
               candidate={c}
               {...coordinates[index]}
-              r="3.64"
             />
           ))}
         </svg>

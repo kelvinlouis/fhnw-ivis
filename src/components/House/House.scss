@@ -8,6 +8,44 @@ $money-width: 200px;
   height: 0;
   padding-top: 50%;
   margin-bottom: 2rem;
+
+  .seat {
+    &.animation--zoom-in {
+      animation-name: zoom-in-house;
+      animation-duration: 2s;
+    }
+  }
+
+  .seat--filled {
+    r: $seat-house-radius;
+  }
+}
+
+.house--initial-render {
+  @for $i from 1 through 435 {
+    .seat:nth-child(#{$i}) {
+      animation-delay: #{4.6 * $i}ms;
+    }
+  }
+
+  .seat {
+    &.animation--zoom-in {
+      animation-duration: 1s;
+    }
+  }
+
+  .house__title,
+  .house__total,
+  .house__party {
+    opacity: 0;
+  }
+}
+
+.house__title,
+.house__total,
+.house__party {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
 }
 
 .house__title {
@@ -18,7 +56,6 @@ $money-width: 200px;
   font-size: $h2-size;
   color: $dirt;
   text-align: center;
-  transition: font-size;
 }
 
 .house__total {

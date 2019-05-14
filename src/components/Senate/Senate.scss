@@ -7,6 +7,44 @@ $money-width: 200px;
   height: 0;
   padding-top: 50%;
   position: relative;
+
+  .seat {
+    &.animation--zoom-in {
+      animation-name: zoom-in-senate;
+      animation-duration: 2s;
+    }
+  }
+
+  .seat--filled {
+    r: $seat-senate-radius;
+  }
+}
+
+.senate--initial-render {
+  @for $i from 1 through 100 {
+    .seat:nth-child(#{100-$i}) {
+      animation-delay: #{20 * $i}ms;
+    }
+  }
+
+  .seat {
+    &.animation--zoom-in {
+      animation-duration: 1s;
+    }
+  }
+
+  .senate__title,
+  .senate__total,
+  .senate__party {
+    opacity: 0;
+  }
+}
+
+.senate__title,
+.senate__total,
+.senate__party {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
 }
 
 .senate__title {
@@ -16,7 +54,6 @@ $money-width: 200px;
   width: $money-width;
   font-size: $h2-size;
   color: $dirt;
-  transition: font-size;
   text-align: center;
 }
 

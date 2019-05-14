@@ -1,8 +1,16 @@
 .seat {
+  r: 0;
+  opacity: 0;
+  transition: fill 0.5s ease-in-out, fill 0.5s ease-in-out;
+
   &:focus {
     outline: 0;
     border: 0;
   }
+}
+
+.seat--filled {
+  opacity: 1;
 }
 
 .seat--active {
