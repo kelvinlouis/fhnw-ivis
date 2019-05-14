@@ -7,36 +7,14 @@ import { setIndustry } from '../../store/filter/actions';
 import * as d3 from 'd3';
 import { Cycle } from '../../models/cycle.enum';
 import './IndustryFilter.scss';
-import { toUnicode } from 'punycode';
+import { IndustryData, IndustryDataEntry, IndustryMap } from '../../types';
+import tippy from 'tippy.js';
 
 interface Props {
   selectedCycle: Cycle;
   selectedSector: string;
   selectedIndustry: string | null;
   onChange: (industry: string | null) => void,
-}
-
-interface IndustryData {
-  [cycle: string]: {
-    [sector: string]: {
-      [industry: string]: {
-        total?: number;
-        pacs?: number;
-        indivs?: number;
-      }
-    }
-  }
-}
-
-interface IndustryMap {
-  [industry: string]: string;
-}
-
-interface IndustryDataEntry {
-  industry: string;
-  value: number;
-  pacs: number;
-  indivs: number;
 }
 
 class IndustryFilter extends Component<Props> {
@@ -197,6 +175,9 @@ class IndustryFilter extends Component<Props> {
       .attr('height', yScale.bandwidth())
       .attr('width', width)
       .attr('class', 'bar__click')
+      .attr('data-tippy-content', g =>
+        `PAC: ${d3.format(".0%")(g.pacs / g.value)} / Individual: ${d3.format(".0%")(g.indivs / g.value)}`
+      )
       .on('click', d => {
         if (d.industry === selectedIndustryLabel) {
           this.onSelectIndustry(null)
@@ -204,6 +185,11 @@ class IndustryFilter extends Component<Props> {
           this.onSelectIndustry(d)
         }
       });
+
+    tippy('[data-tippy-content]', {
+      followCursor: 'initial',
+      delay: 200,
+    });
 
     barGroups
       .append('text')

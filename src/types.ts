@@ -22,3 +22,35 @@ export interface StatesMapJson {
 export interface SectorMapJson {
   [key: string]: string;
 }
+
+/**
+ * Key value pair of industry code to industry name
+ */
+export interface IndustryMap {
+  [industry: string]: string;
+}
+
+/**
+ * Nested object containing totals per industry and sector
+ */
+export interface IndustryData {
+  [cycle: string]: {
+    [sector: string]: {
+      [industry: string]: {
+        total?: number;
+        pacs?: number;
+        indivs?: number;
+      }
+    }
+  }
+}
+
+/**
+ * Single resoved entry of IndustryData
+ */
+export interface IndustryDataEntry {
+  industry: string;
+  value: number;
+  pacs: number;
+  indivs: number;
+}
