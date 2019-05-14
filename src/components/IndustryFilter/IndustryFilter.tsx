@@ -7,36 +7,13 @@ import { setIndustry } from '../../store/filter/actions';
 import * as d3 from 'd3';
 import { Cycle } from '../../models/cycle.enum';
 import './IndustryFilter.scss';
-import { toUnicode } from 'punycode';
+import { IndustryData, IndustryDataEntry, IndustryMap } from '../../types';
 
 interface Props {
   selectedCycle: Cycle;
   selectedSector: string;
   selectedIndustry: string | null;
   onChange: (industry: string | null) => void,
-}
-
-interface IndustryData {
-  [cycle: string]: {
-    [sector: string]: {
-      [industry: string]: {
-        total?: number;
-        pacs?: number;
-        indivs?: number;
-      }
-    }
-  }
-}
-
-interface IndustryMap {
-  [industry: string]: string;
-}
-
-interface IndustryDataEntry {
-  industry: string;
-  value: number;
-  pacs: number;
-  indivs: number;
 }
 
 class IndustryFilter extends Component<Props> {
