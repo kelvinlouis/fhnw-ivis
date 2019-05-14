@@ -1,0 +1,21 @@
+.sector-map {
+  position: relative;
+  left: -2px;
+  bottom: -11px;
+}
+
+.sector-map__sector {
+  &:focus {
+    outline: 0;
+  }
+}
+
+@for $i from 1 through 30 {
+  .sector-map__sector-wrapper:nth-child(#{$i}) {
+    z-index: #{$i};
+  }
+}
+
+.sector-map__label {
+  pointer-events: none;
+}

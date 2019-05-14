@@ -19,6 +19,7 @@ import CandidateCard from './components/CandidateCard/CandidateCard';
 import cycles from './data/candidate_list.json';
 import candidateData from './data/candidate_data.json';
 import './App.scss';
+import { CandidateDataJson } from './data/types';
 
 interface Props {
   cycle: Cycle;
@@ -26,19 +27,8 @@ interface Props {
   industry: string | null;
 }
 
-/**
- * Nested object containing the total contributions per sector and industry
- */
-interface CandidateData {
-  [cycle: string]: {
-    [cid: string]: {
-      [key: string]: number
-    }
-  }
-}
-
 const getTotal = (cid: string, cycle: Cycle, sector: Sector, industry: Industry): number => {
-  const data: CandidateData = candidateData;
+  const data: CandidateDataJson = candidateData;
   const candidate = data[cycle][cid];
 
   if (candidate == null) {
