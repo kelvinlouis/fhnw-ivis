@@ -3,19 +3,48 @@ import './Senate.scss';
 import { CandidateModel } from '../../models/candidate.model';
 import { coordinates } from './senate-coordinates';
 import Seat from '../Seat/Seat';
-import { formatMoney } from '../../utils';
+import { formatMoney, getPartyName } from '../../utils';
 import { Party } from '../../models/party.enum';
 import { Chamber } from '../../models/chamber.enum';
 import { INITIAL_ANIMATION_DURATION } from '../../constants';
+import { AppState } from '../../store';
+import { connect } from 'react-redux';
+import { HighlightFilter } from '../../store/filter/types';
 
 interface Props {
   candidates: CandidateModel[];
   colorScale: (chamber: Chamber) => (candidate: CandidateModel) => string;
+  highlight: HighlightFilter | null;
 }
 
-export class Senate extends Component<Props> {
+class Senate extends Component<Props> {
   private graph: SVGElement | null = null;
   private el: HTMLDivElement | null = null;
+
+  componentDidUpdate(prevProps: Props): void {
+    const { highlight } = this.props;
+    const { highlight: prevHighlight } = prevProps;
+
+    if (this.el == null) {
+      return;
+    }
+
+    if (highlight != null) {
+      if (highlight.chamber === Chamber.House) {
+        this.el.classList.add('senate--none');
+      } else {
+        this.el.classList.add(`senate--only-${getPartyName(highlight.party).toLowerCase()}`);
+      }
+    } else {
+      if (prevHighlight != null) {
+        if (prevHighlight.chamber === Chamber.House) {
+          this.el.classList.remove('senate--none');
+        } else {
+          this.el.classList.remove(`senate--only-${getPartyName(prevHighlight.party).toLowerCase()}`);
+        }
+      }
+    }
+  }
 
   componentDidMount() {
     setTimeout(() => {
@@ -63,3 +92,9 @@ export class Senate extends Component<Props> {
     );
   }
 }
+
+const mapStateToProps = (state: AppState) => ({
+  highlight: state.filter.highlight,
+});
+
+export default connect(mapStateToProps)(Senate);

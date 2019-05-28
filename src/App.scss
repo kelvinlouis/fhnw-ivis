@@ -3,16 +3,19 @@
 .app {
   display: flex;
   align-items: center;
+  height: 100vh;
 }
 
-.app__chambers {
+.app__main {
   width: 55vw;
-  padding: 4rem;
+  padding: 6rem 8rem;
 }
 
 .app__filters {
   width: 45vw;
-  padding: 3rem;
+  height: 100%;
+  padding: 1.5rem 3rem;
+  overflow-y: auto;
   background: lighten($dollar-light, 10%);
 
   h1, h2, h3, h4, h5 {

@@ -39,8 +39,14 @@ class Seat extends Component<Props> {
     const color = colorScale(candidate);
     const darker = d3.color(color)!.darker(1);
     const border = darker.toString();
-    const isVacant = candidate.party === Party.Vacant;
-    const className = `seat ${!isVacant ? 'seat--active' : ''}`;
+    const isVacant = candidate.isVacant();
+    let className = 'seat';
+
+    if (!isVacant) {
+      className = `${className} seat--active seat--${candidate.partyName.toLowerCase()}`;
+    } else {
+      className = `${className} seat--vacant`;
+    }
 
     const tooltip = (
       <span>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CandidateModel } from '../../models/candidate.model';
-import { calculateAge, formatDate, formatMoney, getFunctionName, getPartyName } from '../../utils';
+import { formatDate, formatMoney } from '../../utils';
 import states from '../../data/states.json';
 import './CandidateCard.scss';
 import { AppState } from '../../store';
@@ -41,7 +41,7 @@ class CandidateCard extends Component<Props> {
       return <div />;
     }
 
-    const {cid, party, fullName, state, birthday, bioid, chamber, cycle, total, contributors } = candidate;
+    const { cid, partyName, fullName, state, birthday, age, bioid, office, cycle, total, contributors } = candidate;
     const stateMap: StatesMapJson = states;
 
     return (
@@ -49,7 +49,7 @@ class CandidateCard extends Component<Props> {
         <div className="modal-background" onClick={() => onClose()} />
         <div className="modal-content">
           <div className="card">
-            <div className={`card-ribbon card-ribbon--${getPartyName(party).toLowerCase()}`} />
+            <div className={`card-ribbon card-ribbon--${partyName.toLowerCase()}`} />
             <div className="card-content">
               <article className="media">
                 <figure className="media-left">
@@ -65,9 +65,9 @@ class CandidateCard extends Component<Props> {
                       {fullName} <span className="card-title__sub">({cycle})</span>
                     </a>
                   </h2>
-                  <p className="card-info">{formatDate(birthday)} ({calculateAge(birthday)} years old)</p>
-                  <p className="card-info">{getPartyName(party)}</p>
-                  <p className="card-info">{getFunctionName(chamber)}</p>
+                  <p className="card-info">{formatDate(birthday)} ({age} years old)</p>
+                  <p className="card-info">{partyName}</p>
+                  <p className="card-info">{office}</p>
                   <p className="card-info">{stateMap[state]} ({state})</p>
                   <p className="card-info">Total received: <strong>{formatMoney(total)}</strong></p>
                 </div>

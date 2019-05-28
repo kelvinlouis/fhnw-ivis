@@ -1,0 +1,42 @@
+@import "../../styles/base/variables";
+
+.app__filter--congress-info {
+  line-height: 1.75rem;
+}
+
+.congress-info__highlighter {
+  display: inline-block;
+  padding: 0.5rem 0.5rem;
+  line-height: 0.5rem;
+  cursor: default;
+}
+
+.congress-info__highlighter--democrat {
+  background-color: rgba($democrat-light, 1);
+  color: $democrat;
+  border-bottom: 1px dashed darken($democrat-light, 20%);
+
+  &:hover {
+    box-shadow: 0 1px 4px 1px rgba(darken($democrat-light, 20%), 0.2);
+  }
+}
+
+.congress-info__highlighter--independent {
+  background-color: rgba(darken($independent-light, 20%), 0.3);
+  color: darken($independent, 25%);
+  border-bottom: 1px dashed darken($independent, 20%);
+
+  &:hover {
+    box-shadow: 0 1px 4px 1px rgba(darken($independent, 20%), 0.2);
+  }
+}
+
+.congress-info__highlighter--republican {
+  background-color: rgba($republican-light, 1);
+  color: $republican;
+  border-bottom: 1px dashed darken($republican-light, 20%);
+
+  &:hover {
+    box-shadow: 0 1px 4px 1px rgba(darken($republican-light, 20%), 0.2);
+  }
+}

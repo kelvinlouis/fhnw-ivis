@@ -3,19 +3,48 @@ import './House.scss';
 import { CandidateModel } from '../../models/candidate.model';
 import { coordinates } from './house-coordinates';
 import Seat from '../Seat/Seat';
-import { formatMoney } from '../../utils';
+import { formatMoney, getPartyName } from '../../utils';
 import { Party } from '../../models/party.enum';
 import { Chamber } from '../../models/chamber.enum';
 import { INITIAL_ANIMATION_DURATION } from '../../constants';
+import { HighlightFilter } from '../../store/filter/types';
+import { AppState } from '../../store';
+import { connect } from 'react-redux';
 
 interface Props {
   candidates: CandidateModel[];
   colorScale: (chamber: Chamber) => (candidate: CandidateModel) => string;
+  highlight: HighlightFilter | null,
 }
 
-export class House extends Component<Props> {
+class House extends Component<Props> {
   private graph: SVGElement | null = null;
   private el: HTMLDivElement | null = null;
+
+  componentDidUpdate(prevProps: Props): void {
+    const { highlight } = this.props;
+    const { highlight: prevHighlight } = prevProps;
+
+    if (this.el == null) {
+      return;
+    }
+
+    if (highlight != null) {
+      if (highlight.chamber === Chamber.Senate) {
+        this.el.classList.add('house--none');
+      } else {
+        this.el.classList.add(`house--only-${getPartyName(highlight.party).toLowerCase()}`);
+      }
+    } else {
+      if (prevHighlight != null) {
+        if (prevHighlight.chamber === Chamber.Senate) {
+          this.el.classList.remove('house--none');
+        } else {
+          this.el.classList.remove(`house--only-${getPartyName(prevHighlight.party).toLowerCase()}`);
+        }
+      }
+    }
+  }
 
   componentDidMount() {
     setTimeout(() => {
@@ -35,7 +64,7 @@ export class House extends Component<Props> {
       .filter(c => c.party === Party.Republican)
       .reduce((agg, candidate) => agg + candidate.total, 0);
 
-    const houseColorScale = colorScale(Chamber.House)
+    const houseColorScale = colorScale(Chamber.House);
 
     return (
       <div className="house house--initial-render" ref={el => (this.el = el)}>
@@ -63,3 +92,9 @@ export class House extends Component<Props> {
     );
   }
 }
+
+const mapStateToProps = (state: AppState) => ({
+  highlight: state.filter.highlight,
+});
+
+export default connect(mapStateToProps)(House);

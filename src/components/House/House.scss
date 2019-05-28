@@ -108,3 +108,99 @@ $money-width: 200px;
     color: darken($republican, 10%);
   }
 }
+
+.house--only-democrat {
+  .seat--republican {
+    fill: $republican-light;
+    stroke: white;
+  }
+
+  .seat--independent {
+    fill: $independent-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .house__total,
+  .house__party--republicans {
+    opacity: 0.2;
+  }
+}
+
+.house--only-republican {
+  .seat--democrat {
+    fill: $democrat-light;
+    stroke: white;
+  }
+
+  .seat--independent {
+    fill: $independent-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .house__total,
+  .house__party--democrats {
+    opacity: 0.2;
+  }
+}
+
+.house--only-independent {
+  .seat--democrat {
+    fill: $democrat-light;
+    stroke: white;
+  }
+
+  .seat--republican {
+    fill: $republican-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .house__total,
+  .house__party--democrats,
+  .house__party--republicans {
+    opacity: 0.2;
+  }
+}
+
+.house--none {
+  .seat--democrat {
+    fill: $democrat-light;
+    stroke: white;
+  }
+
+  .seat--republican {
+    fill: $republican-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .seat--independent {
+    fill: $independent-light;
+    stroke: white;
+  }
+
+  .house__total,
+  .house__title,
+  .house__party--democrats,
+  .house__party--republicans {
+    opacity: 0.2;
+  }
+}

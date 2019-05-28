@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { House } from './components/House/House';
-import { Senate } from './components/Senate/Senate';
+import House from './components/House/House';
+import Senate from './components/Senate/Senate';
 import { CandidateModel } from './models/candidate.model';
 import { Candidate } from './models/candidate';
 import { compareByName, getPartyColorQuantile } from './utils';
 import { Chamber } from './models/chamber.enum';
-import { Party } from './models/party.enum';
 import { AppState } from './store';
 import { connect } from 'react-redux';
 import { Cycle } from './models/cycle.enum';
@@ -20,6 +19,7 @@ import cycles from './data/candidate_list.json';
 import candidateData from './data/candidate_data.json';
 import './App.scss';
 import { CandidateDataJson } from './types';
+import CongressInfo from './components/CongressInfo/CongressInfo';
 
 interface Props {
   cycle: Cycle;
@@ -47,12 +47,14 @@ class App extends Component<Props> {
     const { cycle, sector, industry } = this.props;
     let max: number = 0;
 
-    const houseDemocracts: CandidateModel[] = [];
-    const houseOthers: CandidateModel[] = [];
+    const houseDemocrats: CandidateModel[] = [];
     const houseRepublicans: CandidateModel[] = [];
-    const senateDemocracts: CandidateModel[] = [];
-    const senateOthers: CandidateModel[] = [];
+    const houseIndependents: CandidateModel[] = [];
+    const houseVacancies: CandidateModel[] = [];
+    const senateDemocrats: CandidateModel[] = [];
     const senateRepublicans: CandidateModel[] = [];
+    const senateIndependents: CandidateModel[] = [];
+    const senateVacancies: CandidateModel[] = [];
     const paidCandidates: CandidateModel[] = [];
 
     const candidates: CandidateModel[] = Object.values(cycles[cycle])
@@ -76,20 +78,25 @@ class App extends Component<Props> {
 
     sortedCandidates.forEach((c) => {
       if (c.chamber === Chamber.House) {
-        if (c.party === Party.Democrat) {
-          houseDemocracts.push(c);
-        } else if (c.party === Party.Republican) {
+        if (c.isDemocrat()) {
+          houseDemocrats.push(c);
+        } else if (c.isRepublican()) {
           houseRepublicans.push(c);
+        } else if (c.isIndependent()) {
+          houseIndependents.push(c);
         } else {
-          houseOthers.push(c);
+          houseVacancies.push(c);
         }
+
       } else {
-        if (c.party === Party.Democrat) {
-          senateDemocracts.push(c);
-        } else if (c.party === Party.Republican) {
+        if (c.isDemocrat()) {
+          senateDemocrats.push(c);
+        } else if (c.isRepublican()) {
           senateRepublicans.push(c);
+        } else if (c.isIndependent()) {
+          senateIndependents.push(c);
         } else {
-          senateOthers.push(c);
+          senateVacancies.push(c);
         }
       }
     });
@@ -98,18 +105,33 @@ class App extends Component<Props> {
 
     return (
       <div className="app">
-        <div className="app__chambers">
-          <House
-            candidates={[...houseDemocracts, ...houseOthers, ...houseRepublicans]}
-            colorScale={quantileColorScale}
-          />
-          <Senate
-            candidates={[...senateRepublicans, ...senateOthers, ...senateDemocracts]}
-            colorScale={quantileColorScale}
-          />
+        <div className="app__main">
+          <div className="app__chambers">
+            <House
+              candidates={[...houseDemocrats, ...houseIndependents, ...houseVacancies, ...houseRepublicans]}
+              colorScale={quantileColorScale}
+            />
+            <Senate
+              candidates={[...senateRepublicans, ...senateIndependents, ...senateVacancies, ...senateDemocrats]}
+              colorScale={quantileColorScale}
+            />
+          </div>
         </div>
+        <CycleSelector />
         <div className="app__filters">
-          <CycleSelector />
+          <div className="app__filter">
+            <h1>Monetary Influence in U.S. Politics</h1>
+          </div>
+          <CongressInfo
+            nrOfHouseDemocrats={houseDemocrats.length}
+            nrOfHouseIndependents={houseIndependents.length}
+            nrOfHouseRepublicans={houseRepublicans.length}
+            nrOfHouseVacancies={houseVacancies.length}
+            nrOfSenateDemocrats={senateDemocrats.length}
+            nrOfSenateIndependents={senateIndependents.length}
+            nrOfSenateRepublicans={senateRepublicans.length}
+            nrOfSenateVacancies={senateVacancies.length}
+          />
           <SectorFilter />
           <IndustryFilter />
         </div>

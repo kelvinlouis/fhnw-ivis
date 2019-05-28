@@ -2,13 +2,8 @@ import { CandidateModel } from './models/candidate.model';
 import { Party } from './models/party.enum';
 import { ScaleLinear, scaleLinear, scaleQuantile } from 'd3-scale';
 import { Chamber } from './models/chamber.enum';
-import {
-  COLOR_DEMOCRAT,
-  COLOR_DEMOCRAT_LIGHT, COLOR_DOLLAR,
-  COLOR_INDEPENDENT,
-  COLOR_INDEPENDENT_LIGHT,
-  COLOR_REPUBLICAN, COLOR_REPUBLICAN_LIGHT
-} from './constants';
+import { COLOR_DOLLAR } from './constants';
+import { Cycle } from './models/cycle.enum';
 
 export const compareByFullName = (c1: CandidateModel, c2: CandidateModel): number => {
   const name1 = c1.fullName.toUpperCase();
@@ -83,7 +78,7 @@ export const getPartyName = (party: Party | string): string => {
   }
 };
 
-export const getFunctionName = (chamber: Chamber | string): string => {
+export const getOfficeName = (chamber: Chamber | string): string => {
   if (chamber === Chamber.House) {
     return 'Representative';
   } else if (chamber === Chamber.Senate) {
@@ -102,4 +97,19 @@ export const calculateAge = (birthday: Date): number => {
 export const formatDate = (date: Date): string => {
   return new Intl.DateTimeFormat('en-US')
     .format(date);
+};
+
+export const getCongressName = (cycle: Cycle): string => {
+  /*if (cycle === Cycle.Year2012) {
+    return '112th United States Congress (2011-2013)';
+  }else */ if (cycle === Cycle.Year2014) {
+    return '113th United States Congress (2013-2015)';
+  } else if (cycle === Cycle.Year2016) {
+    return '114th United States Congress (2015-2017)';
+  } else if (cycle === Cycle.Year2018) {
+    return '115th United States Congress (2017-2019)';
+  }/* else if (cycle === Cycle.Year2020) {
+    return '116th United States Congress (2019-2021)';
+  }*/
+  return '';
 };

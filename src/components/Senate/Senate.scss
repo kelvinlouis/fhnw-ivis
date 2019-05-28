@@ -109,3 +109,99 @@ $money-width: 200px;
     color: darken($republican, 10%);
   }
 }
+
+.senate--only-democrat {
+  .seat--republican {
+    fill: $republican-light;
+    stroke: white;
+  }
+
+  .seat--independent {
+    fill: $independent-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .senate__total,
+  .senate__party--republicans {
+    opacity: 0.2;
+  }
+}
+
+.senate--only-republican {
+  .seat--democrat {
+    fill: $democrat-light;
+    stroke: white;
+  }
+
+  .seat--independent {
+    fill: $independent-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .senate__total,
+  .senate__party--democrats {
+    opacity: 0.2;
+  }
+}
+
+.senate--only-independent {
+  .seat--democrat {
+    fill: $democrat-light;
+    stroke: white;
+  }
+
+  .seat--republican {
+    fill: $republican-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .senate__total,
+  .senate__party--democrats,
+  .senate__party--republicans {
+    opacity: 0.2;
+  }
+}
+
+.senate--none {
+  .seat--democrat {
+    fill: $democrat-light;
+    stroke: white;
+  }
+
+  .seat--republican {
+    fill: $republican-light;
+    stroke: white;
+  }
+
+  .seat--vacant {
+    fill: white;
+    stroke: white;
+  }
+
+  .seat--independent {
+    fill: $independent-light;
+    stroke: white;
+  }
+
+  .senate__total,
+  .senate__title,
+  .senate__party--democrats,
+  .senate__party--republicans {
+    opacity: 0.2;
+  }
+}

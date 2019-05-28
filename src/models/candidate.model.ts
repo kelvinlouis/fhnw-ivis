@@ -3,6 +3,7 @@ import { Chamber } from './chamber.enum';
 import { Candidate } from './candidate';
 import { Cycle } from './cycle.enum';
 import { ContributorModel } from './contributor.model';
+import { calculateAge, getOfficeName, getPartyName } from '../utils';
 
 export class CandidateModel {
   public readonly cid: string;
@@ -16,6 +17,18 @@ export class CandidateModel {
   public readonly birthday: Date;
   public readonly total: number;
   public readonly contributors: ContributorModel[];
+
+  public get age(): number {
+    return calculateAge(this.birthday);
+  }
+
+  public get partyName(): string {
+    return getPartyName(this.party);
+  }
+
+  public get office(): string {
+    return getOfficeName(this.chamber);
+  }
 
   constructor(candidate: Candidate, total: number) {
     const nameParts = candidate.name.split(',');
@@ -36,5 +49,21 @@ export class CandidateModel {
     } else {
       this.contributors = [];
     }
+  }
+
+  public isDemocrat(): boolean {
+    return this.party === Party.Democrat
+  }
+
+  public isRepublican(): boolean {
+    return this.party === Party.Republican
+  }
+
+  public isIndependent(): boolean {
+    return this.party === Party.Independent
+  }
+
+  public isVacant(): boolean {
+    return this.party === Party.Vacant
   }
 }
