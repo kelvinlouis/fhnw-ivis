@@ -37,7 +37,12 @@ export class SectorMap extends Component<Props> {
   }
 
   render() {
-    return <svg ref={svg => this.graph = svg} />
+    return (
+      <div className="sector-map-container">
+        <h4 className="sector-map__title">Sector Contributions</h4>
+        <svg ref={svg => this.graph = svg} />
+      </div>
+    );
   }
 
   private getSectorAmounts(): TreemapNode[] {
@@ -53,6 +58,7 @@ export class SectorMap extends Component<Props> {
 
     Object
       .keys(sectorMap)
+      .sort((k1, k2) => candidateData[cycle][cid][k1] < candidateData[cycle][cid][k2] ? 1 : -1)
       .forEach((key) => {
         if (candidateData[cycle][cid] != null) {
           const value = candidateData[cycle][cid][key] || 0;

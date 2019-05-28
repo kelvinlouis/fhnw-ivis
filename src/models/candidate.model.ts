@@ -2,6 +2,7 @@ import { Party } from './party.enum';
 import { Chamber } from './chamber.enum';
 import { Candidate } from './candidate';
 import { Cycle } from './cycle.enum';
+import { ContributorModel } from './contributor.model';
 
 export class CandidateModel {
   public readonly cid: string;
@@ -14,6 +15,7 @@ export class CandidateModel {
   public readonly state: string;
   public readonly birthday: Date;
   public readonly total: number;
+  public readonly contributors: ContributorModel[];
 
   constructor(candidate: Candidate, total: number) {
     const nameParts = candidate.name.split(',');
@@ -28,5 +30,11 @@ export class CandidateModel {
     this.state = candidate.state;
     this.birthday = new Date(candidate.birthday);
     this.total = total;
+
+    if (candidate.contributors != null) {
+      this.contributors = candidate.contributors.map(c => new ContributorModel(c));
+    } else {
+      this.contributors = [];
+    }
   }
 }

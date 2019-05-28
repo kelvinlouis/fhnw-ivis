@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CandidateModel } from '../../models/candidate.model';
-import { calculateAge, formatDate, getFunctionName, getPartyName } from '../../utils';
+import { calculateAge, formatDate, formatMoney, getFunctionName, getPartyName } from '../../utils';
 import states from '../../data/states.json';
 import './CandidateCard.scss';
 import { AppState } from '../../store';
@@ -41,7 +41,7 @@ class CandidateCard extends Component<Props> {
       return <div />;
     }
 
-    const { cid, party, fullName, state, birthday, bioid, chamber, cycle } = candidate;
+    const {cid, party, fullName, state, birthday, bioid, chamber, cycle, total, contributors } = candidate;
     const stateMap: StatesMapJson = states;
 
     return (
@@ -62,15 +62,29 @@ class CandidateCard extends Component<Props> {
                 <div className="media-content">
                   <h2 className="card-title">
                     <a href={`http://bioguide.congress.gov/scripts/biodisplay.pl?index=${bioid}`} target="_blank">
-                      {fullName}
+                      {fullName} <span className="card-title__sub">({cycle})</span>
                     </a>
                   </h2>
                   <p className="card-info">{formatDate(birthday)} ({calculateAge(birthday)} years old)</p>
                   <p className="card-info">{getPartyName(party)}</p>
-                  <p className="card-info">{getFunctionName(chamber)}, {cycle}</p>
+                  <p className="card-info">{getFunctionName(chamber)}</p>
                   <p className="card-info">{stateMap[state]} ({state})</p>
+                  <p className="card-info">Total received: <strong>{formatMoney(total)}</strong></p>
                 </div>
               </article>
+            </div>
+            <div className="candidate__contributors">
+              <h4>Top Contributors</h4>
+              <nav className="level">
+                {contributors.map(contributor => (
+                  <div className="level-item has-text-centered">
+                    <div>
+                      <p className="heading">{contributor.name}</p>
+                      <p className="title">{formatMoney(contributor.total)}</p>
+                    </div>
+                  </div>
+                ))}
+              </nav>
             </div>
             <SectorMap candidate={candidate} />
           </div>

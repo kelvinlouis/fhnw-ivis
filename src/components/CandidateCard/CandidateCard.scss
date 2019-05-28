@@ -26,6 +26,10 @@
   margin-bottom: 0;
 }
 
+.card-title__sub {
+  font-size: 2rem;
+}
+
 .card-ribbon--democrat {
   background: $democrat;
 }
@@ -36,4 +40,23 @@
 
 .card-ribbon--independent {
   background: $independent;
+}
+
+.candidate__contributors {
+  padding: 0 1.5rem 1.5rem;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  .heading {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  .title {
+    margin-top: -0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
 }

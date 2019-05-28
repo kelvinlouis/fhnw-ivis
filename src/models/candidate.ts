@@ -1,3 +1,5 @@
+import { Contributor } from './contributor';
+
 export interface Candidate {
   cid: string;
   bioid: string;
@@ -7,4 +9,5 @@ export interface Candidate {
   chamber: string;
   state: string;
   birthday: string;
+  contributors?: Contributor[];
 }
