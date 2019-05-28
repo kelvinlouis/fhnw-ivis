@@ -19,6 +19,7 @@
     "react-scripts": "2.1.8",
     "react-select": "^2.4.3",
     "redux": "^4.0.1",
+    "ts-debounce": "^1.0.0",
     "typescript": "^3.4.5"
   },
   "scripts": {

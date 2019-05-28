@@ -8,6 +8,7 @@ import { Chamber } from '../../models/chamber.enum';
 import { Party } from '../../models/party.enum';
 import { HighlightFilter } from '../../store/filter/types';
 import { getCongressName } from '../../utils';
+import { debounce } from 'ts-debounce';
 
 interface Props {
   cycle: Cycle;
@@ -23,11 +24,17 @@ interface Props {
 }
 
 class CongressInfo extends React.Component<Props> {
-  public onMouseOver(chamber: Chamber, party: Party): void {
-    this.props.onHighlight({
-      chamber,
-      party,
-    });
+  public onMouseOver: any;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.onMouseOver = debounce((chamber: Chamber, party: Party) => {
+      this.props.onHighlight({
+        chamber,
+        party,
+      });
+    }, 100);
   }
 
   public onMouseLeave(): void {
@@ -50,7 +57,7 @@ class CongressInfo extends React.Component<Props> {
     return (
       <div className="app__filter app__filter--congress-info">
         <p>
-          The <strong>{getCongressName(cycle)}</strong> is made up of two chambers.
+          The <strong>{getCongressName(cycle)}</strong> is made up of two chambers: house and senate.
         </p>
         <p>
           There are <strong>435 representatives</strong> in the house:&nbsp;
