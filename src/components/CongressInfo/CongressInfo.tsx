@@ -59,17 +59,16 @@ class CongressInfo extends React.Component<Props> {
             onMouseEnter={() => this.onMouseOver(Chamber.House, Party.Democrat)}
             className="congress-info__highlighter congress-info__highlighter--democrat"
           >
-          {nrOfHouseDemocrats} democrats
-        </span>
-          ,&nbsp;
+            {nrOfHouseDemocrats} democrats
+          </span>
+          ,
           <span
             onMouseLeave={() => nrOfHouseIndependents > 0 ? this.onMouseLeave() : () => {}}
             onMouseEnter={() => nrOfHouseIndependents > 0 ? this.onMouseOver(Chamber.House, Party.Independent) : () => {}}
             className="congress-info__highlighter congress-info__highlighter--independent"
           >
-          {nrOfHouseIndependents} {nrOfHouseIndependents === 1 ? 'independent' : 'independents'}
-        </span>
-          <span>,&nbsp;</span>
+            {nrOfHouseIndependents} {nrOfHouseIndependents === 1 ? 'independent' : 'independents'}
+          </span>
           <span
             onMouseLeave={() => this.onMouseLeave()}
             onMouseEnter={() => this.onMouseOver(Chamber.House, Party.Republican)}
@@ -77,7 +76,7 @@ class CongressInfo extends React.Component<Props> {
           >
             {nrOfHouseRepublicans} republicans
           </span>
-          &nbsp;and&nbsp;
+          and&nbsp;
           {nrOfHouseVacancies} {nrOfHouseVacancies === 1 ? 'vacancy' : 'vacancies'}.
         </p>
         <p>
@@ -89,7 +88,7 @@ class CongressInfo extends React.Component<Props> {
           >
             {nrOfSenateDemocrats} democrats
           </span>
-          ,&nbsp;
+          ,
           <span
             onMouseLeave={() => nrOfSenateIndependents > 0 ? this.onMouseLeave() : () => {}}
             onMouseEnter={() => nrOfSenateIndependents > 0 ? this.onMouseOver(Chamber.Senate, Party.Independent) : () => {}}
@@ -97,7 +96,7 @@ class CongressInfo extends React.Component<Props> {
           >
             {nrOfSenateIndependents} {nrOfSenateIndependents === 1 ? 'independent' : 'independents'}
           </span>
-          ,&nbsp;
+          ,
           <span
             onMouseLeave={() => this.onMouseLeave()}
             onMouseEnter={() => this.onMouseOver(Chamber.Senate, Party.Republican)}
@@ -109,8 +108,7 @@ class CongressInfo extends React.Component<Props> {
           {nrOfSenateVacancies} {nrOfSenateVacancies === 1 ? 'vacancy' : 'vacancies'}.
         </p>
         <p>
-          Every election cycle candidates of both chambers receive contributions.&nbsp;
-          They either come from individuals or political action committees (PACs).
+          Every election cycle candidates of both chambers receive contributions. They either come from individuals or political action committees (PACs).
         </p>
       </div>
     );

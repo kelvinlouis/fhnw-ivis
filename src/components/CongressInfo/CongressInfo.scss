@@ -1,11 +1,8 @@
 @import "../../styles/base/variables";
 
-.app__filter--congress-info {
-  line-height: 1.75rem;
-}
-
 .congress-info__highlighter {
   display: inline-block;
+  margin: 0 0.125rem;
   padding: 0.5rem 0.5rem;
   line-height: 0.5rem;
   cursor: default;
