@@ -3,7 +3,7 @@ import { House } from './components/House/House';
 import { Senate } from './components/Senate/Senate';
 import { CandidateModel } from './models/candidate.model';
 import { Candidate } from './models/candidate';
-import { compareByName } from './utils';
+import { compareByName, getPartyColorQuantile } from './utils';
 import { Chamber } from './models/chamber.enum';
 import { Party } from './models/party.enum';
 import { AppState } from './store';
@@ -53,6 +53,7 @@ class App extends Component<Props> {
     const senateDemocracts: CandidateModel[] = [];
     const senateOthers: CandidateModel[] = [];
     const senateRepublicans: CandidateModel[] = [];
+    const paidCandidates: CandidateModel[] = [];
 
     const candidates: CandidateModel[] = Object.values(cycles[cycle])
       .map((c: Candidate) => {
@@ -62,7 +63,13 @@ class App extends Component<Props> {
           max = total;
         }
 
-        return new CandidateModel(c, total);
+        const newCandidate = new CandidateModel(c, total);
+
+        if (total !== 0) {
+          paidCandidates.push(newCandidate)
+        }
+
+        return newCandidate;
       });
 
     const sortedCandidates = candidates.sort(compareByName);
@@ -87,16 +94,18 @@ class App extends Component<Props> {
       }
     });
 
+    const quantileColorScale = getPartyColorQuantile(paidCandidates);
+
     return (
       <div className="app">
         <div className="app__chambers">
           <House
-            max={max}
             candidates={[...houseDemocracts, ...houseOthers, ...houseRepublicans]}
+            colorScale={quantileColorScale}
           />
           <Senate
-            max={max}
             candidates={[...senateRepublicans, ...senateOthers, ...senateDemocracts]}
+            colorScale={quantileColorScale}
           />
         </div>
         <div className="app__filters">

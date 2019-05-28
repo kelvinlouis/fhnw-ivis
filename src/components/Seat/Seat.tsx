@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Tippy from '@tippy.js/react'
 import * as d3 from 'd3';
 import { CandidateModel } from '../../models/candidate.model';
-import { formatMoney, getPartyColor } from '../../utils';
+import { formatMoney } from '../../utils';
 import { Party } from '../../models/party.enum';
 import './Seat.scss';
 import { setSelectedCandidate } from '../../store/candidate/actions';
@@ -12,7 +12,7 @@ import { AppState } from '../../store';
 
 interface Props {
   candidate: CandidateModel;
-  max: number;
+  colorScale: (candidate: CandidateModel) => string;
   cx: string;
   cy: string;
   onClick?: (candidate: CandidateModel) => void;
@@ -35,8 +35,8 @@ class Seat extends Component<Props> {
   }
 
   render() {
-    const { cx, cy, candidate, max, onClick } = this.props;
-    const color = getPartyColor(candidate, max)!;
+    const { cx, cy, candidate, colorScale, onClick } = this.props;
+    const color = colorScale(candidate);
     const darker = d3.color(color)!.darker(1);
     const border = darker.toString();
     const isVacant = candidate.party === Party.Vacant;

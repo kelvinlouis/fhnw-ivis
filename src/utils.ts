@@ -1,6 +1,6 @@
 import { CandidateModel } from './models/candidate.model';
 import { Party } from './models/party.enum';
-import { ScaleLinear, scaleLinear } from 'd3-scale';
+import { ScaleLinear, scaleLinear, scaleQuantile } from 'd3-scale';
 import { Chamber } from './models/chamber.enum';
 import {
   COLOR_DEMOCRAT,
@@ -37,31 +37,27 @@ export const getDolorLinearScale = (min: number, max: number): ScaleLinear<strin
   return getLinearColorScale(min, max, 'white', COLOR_DOLLAR);
 };
 
-export const getDemocratLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
-  return getLinearColorScale(0, max, COLOR_DEMOCRAT_LIGHT, COLOR_DEMOCRAT);
-};
+export const getPartyColorQuantile = (candidates: CandidateModel[]) => {
+  return (chamber: Chamber) => {
+    const filteredCandidates = candidates.filter(c => c.chamber === chamber);
 
-export const getIndependentLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
-  return getLinearColorScale(0, max, COLOR_INDEPENDENT_LIGHT, COLOR_INDEPENDENT);
-};
+    return (candidate: CandidateModel): string => {
+      const colorScale = scaleQuantile<string>()
+        .domain(filteredCandidates.map(c => c.total));
 
-export const getRepublicanLinearScale = (min: number, max: number): ScaleLinear<string, string> => {
-  return getLinearColorScale(0, max, COLOR_REPUBLICAN_LIGHT, COLOR_REPUBLICAN);
-};
-
-export const getPartyColor = (candidate: CandidateModel, max: number): string => {
-  const democratScale = getDemocratLinearScale(0, max);
-  const independentScale = getIndependentLinearScale(0, max);
-  const republicanScale = getRepublicanLinearScale(0, max);
-
-  if (candidate.party === Party.Democrat) {
-    return democratScale(candidate.total);
-  } else if (candidate.party === Party.Independent) {
-    return independentScale(candidate.total);
-  } else if (candidate.party === Party.Republican) {
-    return republicanScale(candidate.total);
-  } else {
-    return 'white';
+      if (candidate.party === Party.Democrat) {
+        const democratRange = ['#f4f5ff','#e2d5ff','#ceb6ff','#b897ff','#a078ff','#8258ff','#5d36ff','#0000ff'];
+        return filteredCandidates.length === 0 ? democratRange[0] : colorScale.range(democratRange)(candidate.total);
+      } else if (candidate.party === Party.Independent) {
+        const independentRange = ['#fffff4','#fffcdd','#fff8c6','#fff4ae','#fff091','#ffec72','#ffe84e','#ffe400'];
+        return filteredCandidates.length === 0 ? independentRange[0] : colorScale.range(independentRange)(candidate.total);
+      } else if (candidate.party === Party.Republican) {
+        const republicanRange = ['#fff4f4','#ffddd5','#ffc6b6','#ffad96','#ff9377','#ff7656','#ff5233','#ff0000'];
+        return filteredCandidates.length === 0 ? republicanRange[0] : colorScale.range(republicanRange)(candidate.total);
+      } else {
+        return 'white';
+      }
+    }
   }
 };
 
