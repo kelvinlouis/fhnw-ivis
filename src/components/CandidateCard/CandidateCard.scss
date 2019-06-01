@@ -57,8 +57,9 @@
   }
 
   .heading {
-    font-size: 1.2rem;
     margin-bottom: 0;
+    line-height: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .title {
@@ -76,6 +77,10 @@
   }
 
   .candidate__contributors {
+    .heading {
+      max-width: 240px;
+    }
+
     h4 {
       text-align: left;
     }

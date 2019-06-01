@@ -59,15 +59,16 @@ class App extends Component<Props> {
 
     const candidates: CandidateModel[] = Object.values(cycles[cycle])
       .map((c: Candidate) => {
-        const total = getTotal(c.cid, cycle, sector, industry);
+        const filteredTotal = getTotal(c.cid, cycle, sector, industry);
+        const total = getTotal(c.cid, cycle, 'total', null);
 
-        if (total > max) {
-          max = total;
+        if (filteredTotal > max) {
+          max = filteredTotal;
         }
 
-        const newCandidate = new CandidateModel(c, total);
+        const newCandidate = new CandidateModel(c, filteredTotal, total);
 
-        if (total !== 0) {
+        if (filteredTotal !== 0) {
           paidCandidates.push(newCandidate)
         }
 

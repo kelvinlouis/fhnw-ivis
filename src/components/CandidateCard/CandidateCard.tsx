@@ -21,7 +21,7 @@ class CandidateCard extends Component<Props> {
 
   onEsc = (event: KeyboardEvent): void => {
     const { onClose } = this.props;
-    if(event.keyCode === 27) {
+    if (event.keyCode === 27) {
       onClose();
     }
   };

@@ -15,6 +15,7 @@ export class CandidateModel {
   public readonly chamber: Chamber | string;
   public readonly state: string;
   public readonly birthday: Date;
+  public readonly filteredTotal: number;
   public readonly total: number;
   public readonly contributors: ContributorModel[];
 
@@ -30,7 +31,7 @@ export class CandidateModel {
     return getOfficeName(this.chamber);
   }
 
-  constructor(candidate: Candidate, total: number) {
+  constructor(candidate: Candidate, filteredTotal: number, total: number) {
     const nameParts = candidate.name.split(',');
 
     this.cid = candidate.cid;
@@ -42,6 +43,7 @@ export class CandidateModel {
     this.chamber = candidate.chamber;
     this.state = candidate.state;
     this.birthday = new Date(candidate.birthday);
+    this.filteredTotal = filteredTotal;
     this.total = total;
 
     if (candidate.contributors != null) {

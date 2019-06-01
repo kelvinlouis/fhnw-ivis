@@ -52,7 +52,7 @@ class Seat extends Component<Props> {
     const tooltip = (
       <span>
         <span><strong>{candidate.fullName}</strong></span>
-        <span className="seat__money">{formatMoney(candidate.total)}</span>
+        <span className="seat__money">{formatMoney(candidate.filteredTotal)}</span>
       </span>
     );
 
