@@ -30,13 +30,17 @@ h5 {
 }
 
 .modal-content {
+  width: 90vw;
   overflow: hidden;
-  width: 680px;
 }
 
 @media only screen and (min-width: 1024px) {
   html,
   body {
     overflow: hidden;
+  }
+
+  .modal-content {
+    width: 680px;
   }
 }

@@ -1,5 +1,11 @@
 @import "../../styles/base/variables";
 
+.card {
+  .sector-map-container {
+    display: none;
+  }
+}
+
 .card-ribbon {
   width: 100%;
   height: 20px;
@@ -47,6 +53,7 @@
 
   h4 {
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .heading {
@@ -58,5 +65,19 @@
     margin-top: -0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .card {
+    .sector-map-container {
+      display: block;
+    }
+  }
+
+  .candidate__contributors {
+    h4 {
+      text-align: left;
+    }
   }
 }
