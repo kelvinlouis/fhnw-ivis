@@ -59,15 +59,15 @@ class House extends Component<Props> {
 
   render() {
     const { candidates, colorScale } = this.props;
-    const total = candidates.reduce((agg, candidate) => agg + candidate.total, 0);
+    const total = candidates.reduce((agg, candidate) => agg + candidate.filteredTotal, 0);
 
     const totalDemocrats = candidates
       .filter(c => c.party === Party.Democrat)
-      .reduce((agg, candidate) => agg + candidate.total, 0);
+      .reduce((agg, candidate) => agg + candidate.filteredTotal, 0);
 
     const totalRepublicans = candidates
       .filter(c => c.party === Party.Republican)
-      .reduce((agg, candidate) => agg + candidate.total, 0);
+      .reduce((agg, candidate) => agg + candidate.filteredTotal, 0);
 
     const houseColorScale = colorScale(Chamber.House);
 
