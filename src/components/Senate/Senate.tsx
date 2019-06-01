@@ -42,6 +42,11 @@ class Senate extends Component<Props> {
         } else {
           this.el.classList.remove(`senate--only-${getPartyName(prevHighlight.party).toLowerCase()}`);
         }
+      } else {
+        this.el.classList.remove('senate--none');
+        this.el.classList.remove('senate--only-democrat');
+        this.el.classList.remove('senate--only-republican');
+        this.el.classList.remove('senate--only-independent');
       }
     }
   }
@@ -82,6 +87,7 @@ class Senate extends Component<Props> {
           {candidates.map((c, index) => (
             <Seat
               key={c.cid}
+              r={6.67}
               colorScale={senateColorScale}
               candidate={c}
               {...coordinates[index]}

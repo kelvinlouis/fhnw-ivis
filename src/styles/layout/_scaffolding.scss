@@ -1,8 +1,3 @@
-html,
-body {
-  overflow: hidden;
-}
-
 p {
   margin-bottom: 0.5em;
 }
@@ -37,4 +32,11 @@ h5 {
 .modal-content {
   overflow: hidden;
   width: 680px;
+}
+
+@media only screen and (min-width: 1024px) {
+  html,
+  body {
+    overflow: hidden;
+  }
 }

@@ -3,10 +3,11 @@
 $money-width: 200px;
 
 .senate {
+  position: relative;
   width: 100%;
   height: 0;
   padding-top: 50%;
-  position: relative;
+  font-size: 12px;
 
   .seat {
     &.animation--zoom-in {
@@ -43,7 +44,7 @@ $money-width: 200px;
 .senate__title,
 .senate__total,
 .senate__party {
-  transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out, font-size 1s ease-in-out;
   opacity: 1;
 }
 
@@ -63,7 +64,7 @@ $money-width: 200px;
   left: calc(50% - #{$money-width * 0.5});
   width: $money-width;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: 700;
   color: darken($dirt, 10%);
 }
@@ -82,7 +83,7 @@ $money-width: 200px;
 }
 
 .senate__party-total {
-  margin-top: -0.5rem;
+  margin-top: -0.5em;
   display: block;
   color: darken($dirt, 10%);
 }
@@ -203,5 +204,23 @@ $money-width: 200px;
   .senate__party--democrats,
   .senate__party--republicans {
     opacity: 0.2;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .senate {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .senate {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .senate {
+    font-size: 16px;
   }
 }

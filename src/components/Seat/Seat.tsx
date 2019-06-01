@@ -13,6 +13,7 @@ import { AppState } from '../../store';
 interface Props {
   candidate: CandidateModel;
   colorScale: (candidate: CandidateModel) => string;
+  r: number;
   cx: string;
   cy: string;
   onClick?: (candidate: CandidateModel) => void;
@@ -35,7 +36,7 @@ class Seat extends Component<Props> {
   }
 
   render() {
-    const { cx, cy, candidate, colorScale, onClick } = this.props;
+    const { cx, cy, r, candidate, colorScale, onClick } = this.props;
     const color = colorScale(candidate);
     const darker = d3.color(color)!.darker(1);
     const border = darker.toString();
@@ -58,6 +59,7 @@ class Seat extends Component<Props> {
     return (
       <Tippy content={tooltip} isEnabled={!isVacant} delay={200}>
         <circle
+          r={r}
           cx={cx}
           cy={cy}
           fill={color}

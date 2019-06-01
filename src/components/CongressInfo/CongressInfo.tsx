@@ -34,7 +34,7 @@ class CongressInfo extends React.Component<Props> {
         chamber,
         party,
       });
-    }, 100);
+    }, 400, { isImmediate: true });
   }
 
   public onMouseLeave(): void {

@@ -42,6 +42,11 @@ class House extends Component<Props> {
         } else {
           this.el.classList.remove(`house--only-${getPartyName(prevHighlight.party).toLowerCase()}`);
         }
+      } else {
+        this.el.classList.remove('house--none');
+        this.el.classList.remove('house--only-democrat');
+        this.el.classList.remove('house--only-republican');
+        this.el.classList.remove('house--only-independent');
       }
     }
   }
@@ -82,6 +87,7 @@ class House extends Component<Props> {
           {candidates.map((c, index) => (
             <Seat
               key={c.cid}
+              r={3.64}
               colorScale={houseColorScale}
               candidate={c}
               {...coordinates[index]}

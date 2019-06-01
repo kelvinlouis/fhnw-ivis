@@ -77,7 +77,7 @@ class CandidateCard extends Component<Props> {
               <h4>Top Contributors</h4>
               <nav className="level">
                 {contributors.map(contributor => (
-                  <div className="level-item has-text-centered">
+                  <div className="level-item has-text-centered" key={contributor.name}>
                     <div>
                       <p className="heading">{contributor.name}</p>
                       <p className="title">{formatMoney(contributor.total)}</p>

@@ -3,19 +3,17 @@
 .app {
   display: flex;
   align-items: center;
-  height: 100vh;
+  flex-flow: column;
 }
 
 .app__main {
-  width: 55vw;
-  padding: 6rem 8rem;
+  width: 100%;
+  padding: 3rem 1rem;
 }
 
 .app__filters {
-  width: 45vw;
-  height: 100%;
-  padding: 1.5rem 3rem;
-  overflow-y: auto;
+  width: 100%;
+  padding: 3.5rem 0.5rem;
   background: lighten($dollar-light, 10%);
 
   h1, h2, h3, h4, h5 {
@@ -32,5 +30,58 @@
 
   .control {
     margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 420px) {
+  .app__filters {
+    padding: 3.5rem 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .app {
+    flex-flow: row;
+    height: 100vh;
+  }
+
+  .app__main {
+    width: 65vw;
+    padding: 4rem 4rem;
+  }
+
+  .app__filters {
+    width: 35vw;
+    height: 100%;
+    padding: 1.5rem 1.5rem;
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (min-width: 1110px) {
+  .app__main {
+    width: 60vw;
+    padding: 6rem 6rem;
+  }
+
+  .app__filters {
+    width: 40vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .app__main {
+    width: 55vw;
+  }
+
+  .app__filters {
+    width: 45vw;
+    padding: 1.5rem 3rem;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .app__main {
+    padding: 6rem 8rem;
   }
 }
