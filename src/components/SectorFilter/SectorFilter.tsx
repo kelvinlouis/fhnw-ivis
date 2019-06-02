@@ -32,8 +32,7 @@ const SectorFilter: React.FC<Props> = ({ selectedSector, onChange }) => {
     <div className="app__filter">
       <h3>Sector</h3>
       <p>
-        A sector groups similar industries together. A contribution from an individual or PAC originates from an industry. The industry of an individual is derived from the occupation (employer, field of work, ...).
-        PACs are special interest groups that usually represent industries.
+        A sector groups similar industries together. A contribution from an individual or PAC originates from an industry.
       </p>
       <Select
         options={options}

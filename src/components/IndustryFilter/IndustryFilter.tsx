@@ -3,6 +3,7 @@ import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import industryMap from '../../data/industry_map.json';
 import industryList from '../../data/industry_list.json'
+import industryInfo from '../../data/industry_info.json'
 import { setIndustry } from '../../store/filter/actions';
 import * as d3 from 'd3';
 import { Cycle } from '../../models/cycle.enum';
@@ -15,6 +16,10 @@ interface Props {
   selectedSector: string;
   selectedIndustry: string | null;
   onChange: (industry: string | null) => void,
+}
+
+interface IndustryInfo {
+  [key: string]: string;
 }
 
 class IndustryFilter extends Component<Props> {
@@ -238,9 +243,14 @@ class IndustryFilter extends Component<Props> {
   }
 
   render() {
+    const selectedIndustry = this.props.selectedIndustry;
+    const industryInfos: IndustryInfo = industryInfo;
     return (
       <div>
         <h3>Industries</h3>
+        <p className="text__industryinfo">
+          { selectedIndustry == null ? industryInfos['HLP'] : industryInfos[selectedIndustry] }
+        </p>
         <svg ref={svg => this.graph = svg} />
       </div>
     );
