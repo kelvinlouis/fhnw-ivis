@@ -100,16 +100,17 @@ export const formatDate = (date: Date): string => {
 };
 
 export const getCongressName = (cycle: Cycle): string => {
-  /*if (cycle === Cycle.Year2012) {
+  if (cycle === Cycle.Year2012) {
     return '112th United States Congress (2011-2013)';
-  }else */ if (cycle === Cycle.Year2014) {
+  }else if (cycle === Cycle.Year2014) {
     return '113th United States Congress (2013-2015)';
   } else if (cycle === Cycle.Year2016) {
     return '114th United States Congress (2015-2017)';
   } else if (cycle === Cycle.Year2018) {
     return '115th United States Congress (2017-2019)';
-  }/* else if (cycle === Cycle.Year2020) {
+  } else if (cycle === Cycle.Year2020) {
     return '116th United States Congress (2019-2021)';
-  }*/
-  return '';
+  } else {
+    return '';
+  }
 };
