@@ -4,6 +4,14 @@
   .sector-map-container {
     display: none;
   }
+
+  .media {
+    flex-flow: column;
+  }
+
+  .media-content {
+    overflow: hidden;
+  }
 }
 
 .card-ribbon {
@@ -73,6 +81,10 @@
   .card {
     .sector-map-container {
       display: block;
+    }
+
+    .media {
+      flex-flow: row;
     }
   }
 

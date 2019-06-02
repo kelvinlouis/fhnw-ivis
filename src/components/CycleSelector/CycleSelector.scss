@@ -18,7 +18,7 @@
   position: absolute;
   left: 0;
   width: 70px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: rgba($dirt, 0.4);
   cursor: pointer;
 
@@ -46,28 +46,28 @@
   }
 
   &:nth-child(1) {
-    left: 3rem;
+    left: 2rem;
   }
 
   &:nth-child(2) {
-    left: 10rem;
+    left: 6rem;
   }
 
   &:nth-child(3) {
-    left: 17rem;
+    left: 10rem;
   }
 
   &:nth-child(4) {
-    left: 24rem;
+    left: 14rem;
   }
 
   &:nth-child(5) {
-    left: 31rem;
+    left: 18rem;
   }
 }
 
 .cycle-selector__cycle---active {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: darken($dirt, 10%);
 
   &:before {
@@ -80,7 +80,7 @@
 
 .cycle-selector__cycle-label {
   display: block;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   margin-right: 1.5rem;
   text-align: center;
 }
@@ -104,6 +104,7 @@
     right: 0;
     left: auto;
     width: 70px;
+    font-size: 1.25rem;
 
     &:hover {
       color: $dirt;
@@ -145,14 +146,15 @@
       left: auto;
       top: 31rem;
     }
+  }
 
-    .cycle-selector__cycle-label {
-      margin-top: 0;
-    }
+  .cycle-selector__cycle-label {
+    margin-top: 0;
   }
 
   .cycle-selector__cycle---active {
     width: 100px;
+    font-size: 2rem;
 
     &:before {
       top: calc(50% - 1rem);
