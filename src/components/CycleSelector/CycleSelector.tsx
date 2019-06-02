@@ -12,9 +12,9 @@ interface Props {
 
 const CycleSelector: React.FC<Props> = ({ cycle, onCycleClick }) => (
   <div className="cycle-selector">
-    {/*<div onClick={() => onCycleClick(Cycle.Year2020)} className={`cycle-selector__cycle${cycle === Cycle.Year2020 ? ' cycle-selector__cycle---active' : ''}`}>*/}
-    {/*<span className="cycle-selector__cycle-label">2019</span>*/}
-    {/*</div>*/}
+    <div onClick={() => onCycleClick(Cycle.Year2020)} className={`cycle-selector__cycle${cycle === Cycle.Year2020 ? ' cycle-selector__cycle---active' : ''}`}>
+    <span className="cycle-selector__cycle-label">2019</span>
+    </div>
     <div onClick={() => onCycleClick(Cycle.Year2018)} className={`cycle-selector__cycle${cycle === Cycle.Year2018 ? ' cycle-selector__cycle---active' : ''}`}>
       <span className="cycle-selector__cycle-label">2017</span>
     </div>
@@ -24,9 +24,9 @@ const CycleSelector: React.FC<Props> = ({ cycle, onCycleClick }) => (
     <div onClick={() => onCycleClick(Cycle.Year2014)} className={`cycle-selector__cycle${cycle === Cycle.Year2014 ? ' cycle-selector__cycle---active' : ''}`}>
       <span className="cycle-selector__cycle-label">2013</span>
     </div>
-    {/*<div onClick={() => onCycleClick(Cycle.Year2012)} className={`cycle-selector__cycle${cycle === Cycle.Year2012 ? ' cycle-selector__cycle---active' : ''}`}>*/}
-    {/*<span className="cycle-selector__cycle-label">2011</span>*/}
-    {/*</div>*/}
+    <div onClick={() => onCycleClick(Cycle.Year2012)} className={`cycle-selector__cycle${cycle === Cycle.Year2012 ? ' cycle-selector__cycle---active' : ''}`}>
+    <span className="cycle-selector__cycle-label">2011</span>
+    </div>
   </div>
 );
 

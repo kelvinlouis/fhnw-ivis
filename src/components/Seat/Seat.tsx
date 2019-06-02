@@ -66,7 +66,7 @@ class Seat extends Component<Props> {
           stroke={border}
           strokeWidth={0.6}
           className={className}
-          onClick={() => onClick != null ? onClick(candidate) : () => {}}
+          onClick={() => onClick != null && !isVacant ? onClick(candidate) : () => {}}
           ref={el => (this.el = el)}
         />
       </Tippy>

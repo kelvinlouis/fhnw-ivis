@@ -135,6 +135,17 @@ class App extends Component<Props> {
           />
           <SectorFilter />
           <IndustryFilter />
+          <p>
+            © 2019 Nicola Cocquio & Kelvin Louis
+            <br />
+            <a
+              href="https://github.com/kelvinlouis/fhnw-ivis"
+              target="_blank"
+              aria-label="Star kelvinlouis/fhnw-ivis on GitHub"
+            >
+              <i className="fab fa-github" /> GitHub Repository
+            </a>
+          </p>
         </div>
         <CandidateCard />
       </div>

@@ -2,7 +2,7 @@ import { Cycle } from '../../models/cycle.enum';
 import { FilterActionTypes, FilterState, SET_CYCLE, SET_HIGHLIGHT, SET_INDUSTRY, SET_SECTOR } from './types';
 
 const initialState: FilterState = {
-  cycle: Cycle.Year2018,
+  cycle: Cycle.Year2020,
   sector: 'total',
   industry: null,
   highlight: null,
