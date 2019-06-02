@@ -41,14 +41,14 @@ export const getPartyColorQuantile = (candidates: CandidateModel[]) => {
         .domain(filteredCandidates.map(c => c.filteredTotal));
 
       if (candidate.party === Party.Democrat) {
-        const democratRange = ['#DBE4FF','#BCCAFF','#9DAEFF','#7D90FF','#5E6FFF','#3F4CFF','#1F27FF','#0000FF'];
-        return filteredCandidates.length === 0 ? democratRange[0] : colorScale.range(democratRange)(candidate.filteredTotal);
+        const democratRange = ['#BCCAFF','#9DAEFF','#7D90FF','#5E6FFF','#3F4CFF','#1F27FF','#0000FF'];
+        return filteredCandidates.length === 0 ? '#DBE4FF' : colorScale.range(democratRange)(candidate.filteredTotal);
       } else if (candidate.party === Party.Independent) {
-        const independentRange = ['#FFFCE6','#FFF9C5','#FFF5A4','#FFF283','#FFEE62','#FFEB42','#FFE821','#FFE400'];
-        return filteredCandidates.length === 0 ? independentRange[0] : colorScale.range(independentRange)(candidate.filteredTotal);
+        const independentRange = ['#FFF9C5','#FFF5A4','#FFF283','#FFEE62','#FFEB42','#FFE821','#FFE400'];
+        return filteredCandidates.length === 0 ? '#FFFCE6' : colorScale.range(independentRange)(candidate.filteredTotal);
       } else if (candidate.party === Party.Republican) {
-        const republicanRange = ['#FFE6EC','#FFC5D1','#FFA4B4','#FF8395','#FF6273','#FF424F','#FF2129','#FF0000'];
-        return filteredCandidates.length === 0 ? republicanRange[0] : colorScale.range(republicanRange)(candidate.filteredTotal);
+        const republicanRange = ['#FFC5D1','#FFA4B4','#FF8395','#FF6273','#FF424F','#FF2129','#FF0000'];
+        return filteredCandidates.length === 0 ? '#FFE6EC' : colorScale.range(republicanRange)(candidate.filteredTotal);
       } else {
         return 'white';
       }
